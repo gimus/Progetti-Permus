@@ -1,0 +1,37 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="dbConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=(local);Initial Catalog=BM;User ID=bm_user;Password=pippo&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=(local);Initial Catalog=BM;User ID=bm_user;Password=pippo</Value>
+    </Setting>
+    <Setting Name="CER_Authority" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Associazione Abbracci di Luce</Value>
+    </Setting>
+    <Setting Name="CER_SubAuthority" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AAL Gestione</Value>
+    </Setting>
+    <Setting Name="iot_bot_key" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">833732354:AAFV7ax0Zc8RwRy4etST1lxhuWWu2jFNuiw</Value>
+    </Setting>
+    <Setting Name="smtp_username" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">permus@gimus.com</Value>
+    </Setting>
+    <Setting Name="smtp_password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">pardesca</Value>
+    </Setting>
+    <Setting Name="smtp_host" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">smtp.gimus.com</Value>
+    </Setting>
+    <Setting Name="smtp_from" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Permus BlockChain &lt;permus@gimus.com&gt;</Value>
+    </Setting>
+    <Setting Name="local_enc_key" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">qowieuroqieurqwenmriuncqrinpqoierufnpqoeiruioqudrpoqiwerjspoqipqwirupqnvg</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

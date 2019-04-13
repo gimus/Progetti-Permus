@@ -1,0 +1,71 @@
+﻿<local:TransferInputRoot x:Class="PrivateSalePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PermusClient"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CoinCreationPage">
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="20" Orientation="Vertical" Grid.Row="0" >
+            
+            <TextBlock Margin="10" Style="{StaticResource bigLabelStyle}" Text="Trasferimento privato di beni o servizi immediatamente compensati da coins" ></TextBlock>
+            <StackPanel Margin="8" Orientation="Horizontal">
+                <TextBlock Width="120" Style="{StaticResource labelStyle}" Text="messaggio: " ></TextBlock>
+                <TextBox Width="500" Text="{Binding message}" ></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource labelStyle}" Text="Beni o servizi trasferiti: " Grid.Row="0" Margin="8,1,1,1" ></TextBlock>
+            <Border Name="bMultipleItems" BorderBrush="red" BorderThickness="1" Grid.Row="1" Grid.RowSpan="1" Margin="4" Padding="10" >
+                <DataGrid Name="DG" AutoGenerateColumns="False" Style="{StaticResource StandardDataGridStyle }">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="28">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="22" Height="22" Source="/PermusClient;component/Images/compensation.png" ></Image>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Binding="{Binding Path=transferObject.description}" Width="*" Header="Description"/>
+                        <DataGridTextColumn x:Name="coins" Binding="{Binding Path=transferObject.cost,  StringFormat={}{0:#0.00}}" TextBlock.FontSize="14" CellStyle="{StaticResource RightAligned_CellStyle}" MinWidth="50" Width="auto" Header="coins" />
+
+                        <DataGridTemplateColumn MinWidth="28">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button ToolTip="Remove this row" Margin="2" Width="20" Height="20" Name="btnKillRow" Click="BtnKillRow_Click">
+                                        <TextBlock FontSize="12" Text="x" Foreground="red" ></TextBlock>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Width="1" Header=""/>
+
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </Border>
+            <StackPanel Margin="2,2,60,2"  HorizontalAlignment="Right"  Grid.Row="2" Orientation="Horizontal">
+                <TextBlock Style="{StaticResource labelStyle}" Text="Numero totale di coin per compensare: " ></TextBlock>
+                <TextBox Name="tbCoinAmount" Width="50" IsReadOnly="true" Text="{Binding coinAmount, StringFormat={}{0:#0.00}}" ></TextBox>
+            </StackPanel>
+
+        </Grid>
+          
+
+
+    </Grid>
+</local:TransferInputRoot>

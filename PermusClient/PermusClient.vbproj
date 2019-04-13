@@ -1,0 +1,554 @@
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8722A24E-5F69-4DED-BE38-E25FFC02001A}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PermusClient</RootNamespace>
+    <AssemblyName>PermusClient</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>C:\webapp\App\PermusClient\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.pardesca.it:4080/permus/app/PermusClient/</InstallUrl>
+    <ProductName>Permus Windows Client Test</ProductName>
+    <PublisherName>gimus.com</PublisherName>
+    <SuiteName>Permus</SuiteName>
+    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>true</IncrementalBuild>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>PermusClient.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <IncrementalBuild>false</IncrementalBuild>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>PermusClient.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>9603192DF4AA0143DA01A6D9C3D0C732E1022816</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>test_codesign_cert.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>Internet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\bc2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>test_code_sign.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>PermusClient.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>PermusClient.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>PermusClient.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>PermusClient.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="Application.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Assets\Converters\TransferItemBackgroundColorConverter.vb" />
+    <Compile Include="Assets\Converters\TransferItemImageConverter.vb" />
+    <Compile Include="Controls\DispositiviControl.xaml.vb">
+      <DependentUpon>DispositiviControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OTPControl.xaml.vb">
+      <DependentUpon>OTPControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PendingTrasnferDetail.xaml.vb">
+      <DependentUpon>PendingTrasnferDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InboundTransfersBrowser.xaml.vb">
+      <DependentUpon>InboundTransfersBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InitiateTransfer.xaml.vb">
+      <DependentUpon>InitiateTransfer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\commandableControl.vb" />
+    <Compile Include="Controls\Dialogs.vb" />
+    <Compile Include="Controls\BlockDetail.xaml.vb">
+      <DependentUpon>BlockDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\numericTextBox.xaml.vb">
+      <DependentUpon>numericTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TransferTransactionsBrowser.xaml.vb">
+      <DependentUpon>TransferTransactionsBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TransferTransactionDetail.xaml.vb">
+      <DependentUpon>TransferTransactionDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BlocksBrowser.xaml.vb">
+      <DependentUpon>BlocksBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransferInputs\PrivateTransferPage.xaml.vb">
+      <DependentUpon>PrivateTransferPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransferInputs\PrivateSalePage.xaml.vb">
+      <DependentUpon>PrivateSalePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransferInputs\PublicSalePage.xaml.vb">
+      <DependentUpon>PublicSalePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransferInputs\PublicTransferPage.xaml.vb">
+      <DependentUpon>PublicTransferPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DetailPage.vb" />
+    <Compile Include="Pages\FromTransferItemsPage.xaml.vb">
+      <DependentUpon>FromTransferItemsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ToTransferItemsPage.xaml.vb">
+      <DependentUpon>ToTransferItemsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BlockchainDetailPage.xaml.vb">
+      <DependentUpon>BlockchainDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransferInputs\PrivateCompensationPage.xaml.vb">
+      <DependentUpon>PrivateCompensationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransferInputs\CoinTransferPage.xaml.vb">
+      <DependentUpon>CoinTransferPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransferInputs\CoinCreationPage.xaml.vb">
+      <DependentUpon>CoinCreationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransferInputs\TransferInputRoot.vb" />
+    <Compile Include="Pages\CurrentUserDetailPage.xaml.vb">
+      <DependentUpon>CurrentUserDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransferInputs\TransferFeedbackPage.xaml.vb">
+      <DependentUpon>TransferFeedbackPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserDetailPage.xaml.vb">
+      <DependentUpon>UserDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Converters\SubjectNameFromIdConverter.vb" />
+    <Compile Include="Assets\Converters\UtcToLocalTimeConverter.vb" />
+    <Compile Include="Pages\FromTransactionsPage.xaml.vb">
+      <DependentUpon>FromTransactionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ToTransactionsPage.xaml.vb">
+      <DependentUpon>ToTransactionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\xTreeView.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StatoWindow.vb" />
+    <Compile Include="Windows\BlockChainEventNotificationWindow.xaml.vb">
+      <DependentUpon>BlockChainEventNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\BlockMasterConnectWindow.xaml.vb">
+      <DependentUpon>BlockMasterConnectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TimedWindow.xaml.vb">
+      <DependentUpon>TimedWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\DispositiviControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OTPControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PendingTrasnferDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\InboundTransfersBrowser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\InitiateTransfer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\BlockDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\numericTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TransferTransactionsBrowser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TransferTransactionDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\BlocksBrowser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TransferInputs\PrivateTransferPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TransferInputs\PrivateSalePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TransferInputs\PublicSalePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TransferInputs\PublicTransferPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\FromTransferItemsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ToTransferItemsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\BlockchainDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TransferInputs\PrivateCompensationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TransferInputs\CoinTransferPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TransferInputs\CoinCreationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CurrentUserDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TransferInputs\TransferFeedbackPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\converters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Templates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\FromTransactionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ToTransactionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Application.xaml.vb">
+      <DependentUpon>Application.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.vb">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Windows\BlockChainEventNotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\BlockMasterConnectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TimedWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="System.Threading.Tasks" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Controls" />
+    <Import Include="System.Windows.Data" />
+    <Import Include="System.Windows.Documents" />
+    <Import Include="System.Windows.Input" />
+    <Import Include="System.Windows.Shapes" />
+    <Import Include="System.Windows.Media" />
+    <Import Include="System.Windows.Media.Imaging" />
+    <Import Include="System.Windows.Navigation" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWpfExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.WPF.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="test_code_sign.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bullet.png" />
+    <Resource Include="Images\clock.png" />
+    <Resource Include="Images\comment.png" />
+    <Resource Include="Images\detach.png" />
+    <Resource Include="Images\DocAPI.ico" />
+    <Resource Include="Images\DocAPIAppSplash.png" />
+    <Resource Include="Images\folder_green.png" />
+    <Resource Include="Images\logout.png" />
+    <Resource Include="Images\membro.png" />
+    <Resource Include="Images\noImage.png" />
+    <Resource Include="Images\properties.png" />
+    <Resource Include="Images\report32.png" />
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\sezione64.png" />
+    <Resource Include="Images\star.png" />
+    <Resource Include="Images\toolbox.ico" />
+    <Resource Include="Images\user.png" />
+    <Resource Include="Images\world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_principale.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 e x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\blockchain.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\masterLocalDb.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\B_S_128x128.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\transferList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\compensation.png" />
+    <Resource Include="Images\transferElement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\261.png" />
+    <Resource Include="Images\262.png" />
+    <Resource Include="Images\264.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\blocks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TransferTransactions\CoinTransfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bc2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TransferTransactions\Compensation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TransferTransactions\PrivateSale.png" />
+    <Resource Include="Images\TransferTransactions\PrivateTransfer.png" />
+    <Resource Include="Images\TransferTransactions\PublicSale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test_trans.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\coin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Permus\Permus.vbproj">
+      <Project>{16eca160-1257-4192-bc00-7f2c647b709e}</Project>
+      <Name>Permus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

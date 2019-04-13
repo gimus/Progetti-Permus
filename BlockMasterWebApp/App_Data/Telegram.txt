@@ -1,0 +1,16 @@
+﻿Telegram bot
+----------------------------------------------------------------
+name: Permus
+username: Permus_bot
+t.me/Permus_bot. 
+Use this token to access the HTTP API:
+833732354:AAFV7ax0Zc8RwRy4etST1lxhuWWu2jFNuiw
+
+For a description of the Bot API, see this page: 
+https://core.telegram.org/bots/api
+
+
+account di posta
+
+permus@gimus.com
+pass: pardesca

@@ -1,0 +1,56 @@
+﻿<local:commandableControl x:Class="BlocksBrowser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PermusClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="LightGray" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Background="Navy">
+                    <Image Margin="4" Grid.Column="0" Source="/PermusClient;component/Images/blocks.png"></Image>
+                </Border>
+                <Border Background="Navy" Grid.Column="1">
+                    <TextBlock Foreground="Azure" Name="tbTitle" Text="Public blocks contained in the Blockchain" Grid.Column="1" FontSize="18" Margin="2" FontWeight="Medium" ></TextBlock>
+                </Border>
+            </Grid>
+            
+        </Border>
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="list" MinWidth="80" Width="140"/>
+                <ColumnDefinition Width="6"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="snow"  >
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border  Grid.Row="0">
+                        <ToolBar Background="LightGray" Visibility="Visible" >
+                        </ToolBar>
+                    </Border>
+                    <ListBox ItemTemplate="{StaticResource itemBlock}" Grid.Row="1" Name="LB"></ListBox>
+                </Grid>
+            </Grid>
+
+            <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"    />
+            <local:BlockDetail x:Name="BlockDetail" Grid.Column="2"></local:BlockDetail>
+        </Grid>
+
+    </Grid>
+</local:commandableControl>

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="OTPControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PermusClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#EFEFEF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold">OTP</TextBlock>
+            <Button Name="btnNuovo"  Margin="4">nuovo codice</Button>
+            <Button Name="btnSalva" Margin="4">salva</Button>
+            <Button Name="btnTestOtp" Margin="6">Test OTP</Button>
+
+            <Separator Margin="8"></Separator>
+
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold">Firma Remota</TextBlock>
+            <Button Name="btnUploadPfx" Margin="6">upload .pfx file</Button>
+            <Button Name="btnSetPin" Margin="6">set PIN</Button>
+            <Button Name="btnTestPfx" Margin="6">Test Firma</Button>
+
+        </StackPanel>
+        <Grid Name="Container" Grid.Column="1">
+        </Grid>
+    </Grid>
+</UserControl>

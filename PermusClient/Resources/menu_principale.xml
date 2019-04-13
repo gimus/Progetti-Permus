@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu>
+  <menuItem  name="currentUser" id="0" header="Home" tooltip="" image="home.png" expanded="False"></menuItem>
+  <menuItem  name="users" id="0" header="Users" tooltip="" image="folder_green.png" expanded="True"></menuItem>
+  <menuItem  name="bc" id="0" header="Blockchain" tooltip="" image="bc.png" expanded="True"></menuItem>
+</menu>

@@ -1,0 +1,45 @@
+﻿<local:commandableControl x:Class="PendingTransferDetail"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PermusClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="LightGray" BorderThickness="1" >
+            <Grid Background="Snow" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="44" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Width="32" Height="32" Grid.Column="0" Source="/PermusClient;component/Images/block.png"></Image>
+                <StackPanel Orientation="Vertical" Grid.Column="1" Margin="2" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" FontSize="20" Text="Inbound TransferTransaction "></TextBlock>
+                        <TextBlock Margin="2" FontSize="20" FontWeight="Medium" Text="{Binding Path=Type}"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Padding="1" HorizontalAlignment="Left" Background="White" Grid.Row="0" Height="30" Grid.ColumnSpan="2">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Click="BtnOk_Click" Background="LightGreen" Name="btnOk" Margin="2" Width="70">Accetta</Button>
+                            <Button Click="BtnCancel_Click" Background="LightPink" Name="btnCancel"  Margin="2" Width="70">Annulla</Button>
+                        </StackPanel>
+                    </Border>
+                    <Frame Grid.Row="2" Name="MainFrame" NavigationUIVisibility="Hidden"  ></Frame>
+                </Grid>
+
+
+    </Grid>
+</local:commandableControl>

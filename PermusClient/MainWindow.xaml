@@ -1,0 +1,147 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PermusClient"
+        mc:Ignorable="d"
+        Title="Permus Client" Height="450" Width="800" Icon="Images/bc2.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" >
+            <MenuItem Header="_File">
+                <MenuItem Click="MniConnect_Click" Name="mniConnect" Header="_Connect" />
+                <MenuItem Click="MniPurgeLocalData_Click" Name="mniPurgeLocalData" Header="_Purge local data" />
+                <Separator />
+                <MenuItem Click="MniExit_Click" Name="mniExit"  Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_debug">
+                <MenuItem Click="MniShowLog_Click" Name="mniShowLog" Header="_Show Activity Log Window" />
+                <MenuItem Click="MniSaveSnapshot_Click" Name="mniSaveSnapshot" Header="_Save Blockchain Snapshot" />
+                <MenuItem Click="MniOpenLocalDir_Click" Name="mniOpenLocalDir" Header="_Open Local Dir" />
+                <MenuItem Click="MniTest_Click" Name="mniTest" Header="_Test" />
+            </MenuItem>
+            <Button  Name="btnPendingTransfers" Click="BtnPendingTransfers_Click" Visibility="Collapsed" Margin="2" Padding="1" Content=" Incoming transfers ">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard BeginTime="00:00:00" 
+                                    RepeatBehavior="Forever" 
+                                    Storyboard.TargetName="btnPendingTransfers" 
+                                    Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                    <ColorAnimation From="White" To="Orange" Duration="0:0:1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+        </Menu>
+        <!--<ToolBar Height="34" Visibility="Visible" >
+            <Button Margin="2" Name="btnTransfer" Width="100" Height="24"  Click="BtnTransfer_Click"  Style="{StaticResource PermusButton}" >Transfer</Button>
+            <Button Margin="2" Name="btnAccept" Width="100" Height="24"  Click="BtnAccept_Click" Style="{StaticResource PermusButton}" >Accept</Button>
+            <Button Margin="2" Name="test" Width="100" Height="24"  Click="Test_Click" >test</Button>
+        </ToolBar>-->
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="cd_Left" MinWidth="100" Width="200"/>
+                <ColumnDefinition Width="6"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="snow"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="8"/>
+                    <RowDefinition Name="panel_org_splitter_position" Height="200"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="red" >
+                    <local:xTreeView SelectedItemChanged="XMenuMain_SelectedItemChanged" x:Name="xMenuMain" AllowDrop="False"
+                         Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  >
+                    </local:xTreeView>
+                </Grid>
+                <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"  Style="{StaticResource HGridSplitter }"  />
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" MinHeight="200" />
+                        <RowDefinition Height="8"/>
+                        <RowDefinition Height="auto"  />
+                    </Grid.RowDefinitions>
+
+                    <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"  Style="{StaticResource HGridSplitter }"  />
+                </Grid>
+
+
+            </Grid>
+
+            <!--<GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"  Visibility="Collapsed"  />
+            <Frame HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"  Grid.Column="2" x:Name="LeftFrame" NavigationUIVisibility="Hidden" VerticalAlignment="Stretch" />-->
+            <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"  />
+            <Frame Grid.Column="2" x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+
+        </Grid>
+
+
+
+        <StatusBar x:Name="StatusBar" Grid.Row="2" Height="32" >
+            <StatusBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFBCC6E2" Offset="0"/>
+                    <GradientStop Color="#FFEAF0FF" Offset="1"/>
+                </LinearGradientBrush>
+            </StatusBar.Background>
+            <Grid HorizontalAlignment="Stretch"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StatusBarItem  Grid.Column="0" Width="4000"  >
+                    <StackPanel Height = "Auto" VerticalAlignment="Center" Orientation="Horizontal" >
+                        <TextBlock Margin="2,0,2,0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height = "Auto" Foreground="#FF9585b9" x:Name="tbStatus" Text="Ready" ToolTip="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                    </StackPanel>
+                </StatusBarItem>
+                <StatusBarItem   Grid.Column="3" >
+                    <StackPanel Height = "Auto" VerticalAlignment="Center" Orientation="Horizontal" >
+                        <Image Margin="2,0,2,0" Visibility="Visible" VerticalAlignment="Center" Height = "Auto" ToolTip="L'applicazione è correttamente connessa al server"  Source="Images/world.png"  />
+                        <TextBlock Margin="2,0,2,0" VerticalAlignment="Center" Height = "Auto" Foreground="#FF9585b9" x:Name="lblServer"  Text="" />
+                    </StackPanel>
+                </StatusBarItem>
+                <StatusBarItem   Grid.Column="4" >
+                    <StackPanel Height = "Auto" VerticalAlignment="Center" Orientation="Horizontal" >
+                        <Image Margin="2,0,2,0" Visibility="Visible" VerticalAlignment="Center" Height = "Auto" ToolTip="" x:Name="icoServer" Source="Images/coin.png"  />
+                        <TextBlock Margin="2,0,2,0" VerticalAlignment="Center" Height = "Auto" Foreground="#FF9585b9" Name="lblCoins" FontWeight="Bold" FontSize="15" Text="" />
+                        <TextBlock Margin="2,0,2,0" VerticalAlignment="Center" Height = "Auto" Foreground="#FF9585b9" Text="coins" />
+                    </StackPanel>
+                </StatusBarItem>
+
+                <StatusBarItem  Grid.Column="5" >
+                    <StackPanel Height = "Auto" VerticalAlignment="Center" Orientation="Horizontal" >
+                        <Button Name="btnUser" Click="BtnUser_Click">
+                            <Image Margin="2,0,2,0"  VerticalAlignment="Center" Height = "Auto"  x:Name="icoUser" Source="Images/user.png"  />
+                        </Button>
+                        <TextBlock   Margin="2,0,2,0" VerticalAlignment="Center" Height = "Auto" Foreground="#FF9585b9" x:Name="lblUser"  Text="{Binding UserName}" />
+                        <Button ToolTip="Quit application" Name="btnQuit" Click="BtnQuit_Click" >
+                            <Image Width="16" Height="16"  Margin="2,0,2,0"  VerticalAlignment="Center" x:Name="icoLogOut" Source="Images/logout.png" ToolTip="Esci e scollegati da questa applicazione" />
+                        </Button>
+                    </StackPanel>
+                </StatusBarItem>
+
+            </Grid>
+
+        </StatusBar>
+
+    </Grid>
+
+</Window>
