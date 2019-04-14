@@ -40,12 +40,17 @@ Public MustInherit Class TransferTransaction
     Public Overridable Function transferNotification() As String
         Dim t As New StringBuilder(100)
 
-        If state = 3 Then
-            t.AppendLine("PROPOSTA DI SCAMBIO IN ARRIVO")
-            t.AppendLine("(rispondere con un OTP valido per accettare, oppure NO per rifiutare)")
-            t.AppendLine("---------------------------------------")
-            t.AppendLine("")
-        End If
+        Select Case state
+            Case 3
+                t.AppendLine("PROPOSTA DI SCAMBIO IN ARRIVO")
+                t.AppendLine("(rispondere con un OTP valido per accettare, oppure NO per rifiutare)")
+                t.AppendLine("---------------------------------------")
+                t.AppendLine("")
+            Case 4
+                t.AppendLine("OPERAZIONE DI SCAMBIO REGISTRATA")
+                t.AppendLine("---------------------------------------")
+                t.AppendLine("")
+        End Select
 
         t.AppendFormat("FROM: {0}", sFrom.name)
         t.AppendLine()
