@@ -7,7 +7,6 @@ Public Class TransferTransactionPackage
     Public Property transaction As TransferTransaction
     Public Property envelopedPrivateBlock As New EnvelopedBlock
 
-    Public tags As New Tags
 
     Public Sub New()
     End Sub
@@ -262,11 +261,5 @@ Public Class PendingTransfers
             Me.Add(pti.id, pti)
         Next
     End Sub
-
-End Class
-
-Public Class Tags
-    Public Property subjectInformedByShortMessage As Boolean
-    Public Property subjectInformedByMail As Boolean
 
 End Class

@@ -28,13 +28,10 @@ Public MustInherit Class TransferTransaction
     Public Property message As String                       ' messaggio associato all'operazione  
     Public Property coinAmount As Double = 0                ' ammontare dei coin trasferiti.  
     Public Property signatureFrom As New Signature          ' firma del soggetto che attiva la transazione
-
     Public Property sFrom As Subject
     Public Property sTo As Subject
     Public Property compensation As Double
     Public Property compensations As Dictionary(Of String, TransferCompensation)
-
-    '  Public Property clonedFrom As TransferTransaction
 
     Public Sub New()
         Me._transactionType = TransactionTypeEnum.Transfer
@@ -42,6 +39,14 @@ Public MustInherit Class TransferTransaction
 
     Public Overridable Function transferNotification() As String
         Dim t As New StringBuilder(100)
+
+        If state = 3 Then
+            t.AppendLine("PROPOSTA DI SCAMBIO IN ARRIVO")
+            t.AppendLine("(rispondere con un OTP valido per accettare, oppure NO per rifiutare)")
+            t.AppendLine("---------------------------------------")
+            t.AppendLine("")
+        End If
+
         t.AppendFormat("FROM: {0}", sFrom.name)
         t.AppendLine()
         t.AppendFormat("  TO: {0}", sTo.name)

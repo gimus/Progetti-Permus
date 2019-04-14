@@ -63,8 +63,30 @@ Public Class TelegramBotHandler
 
     End Sub
 
+    Protected Friend Sub repNotifySubjectsTransferTransactionProposed(ttp As TransferTransactionPackage)
+        Try
+            If ttp.transaction.sFrom.profile IsNot Nothing Then
+                If ttp.transaction.sFrom.profile.hasTelegram Then
+                    sendTransferNotification(ttp.transaction.sFrom, ttp)
+                    repCoinBalance(ttp.transaction.sFrom)
+                End If
+            End If
+
+            If ttp.transaction.sTo.profile IsNot Nothing Then
+                If ttp.transaction.sTo.profile.hasTelegram <> 0 Then
+                    sendTransferNotification(ttp.transaction.sTo, ttp)
+                    repCoinBalance(ttp.transaction.sTo)
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
     Protected Sub sendTransferNotification(s As Subject, ttp As TransferTransactionPackage)
         sendSubjectMessage(s.profile.asProtected.telegramId, ttp.transaction.transferNotification)
+
         If s.profile.asProtected.hasCertificate And ttp.isPrivate Then
             Try
                 ttp.ensureBlockDecrypted(s.profile.asProtected.X509Certificate2)

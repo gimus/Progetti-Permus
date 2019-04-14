@@ -219,9 +219,6 @@ Public Class BlockMasterBlockChain
                     End If
                 End If
 
-                '                Dim pttp As TransferTransactionPackage = pendingTransferTransactions.Values.Where(Function(x) (x.transaction.fromSubject = requester.id Or x.transaction.toSubject = requester.id) And x.transaction.isPending).FirstOrDefault
-                '                check(pttp Is Nothing, "transaction not found")
-
                 check(ttp.transaction.transferId = "", "Transfer transaction already initialized")
                 check(ttp.transaction.fromSubject <> "", "Missing SubjectFrom")
                 check(ttp.transaction.toSubject <> "", "Missing SubjectTo")
@@ -260,6 +257,8 @@ Public Class BlockMasterBlockChain
                 If Not ttp.transaction.requireAcceptance Then
                     addTransactionToCurrentBlock(ttp.transaction)
                     App.H.repNotifySubjectsTransferTransactionComplete(ttp)
+                Else
+                    App.H.repNotifySubjectsTransferTransactionProposed(ttp)
                 End If
 
             Case "TransferTransactionAccept"
