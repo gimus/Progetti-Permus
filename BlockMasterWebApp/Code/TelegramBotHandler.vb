@@ -45,7 +45,7 @@ Public Class TelegramBotHandler
                     Dim ttp As TransferTransactionPackage = M.pendingTransferTransactions.Values.Where(Function(x) (x.transaction.toSubject = s.id And x.transaction.isAwaitingApproval)).FirstOrDefault
                     If ttp IsNot Nothing Then
                         Try
-                            ttp = M.manageTransferTransaction("TransferTransactionCancel", s, ttp)
+                            M.cancelPendingTransfer(s, ttp.transaction.transferId)
                             bot.sendMessageAsync(sender, "Transaction remotely cancelled!")
 
                         Catch ex As Exception
