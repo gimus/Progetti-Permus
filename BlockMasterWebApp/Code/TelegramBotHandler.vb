@@ -42,28 +42,7 @@ Public Class TelegramBotHandler
         bot.sendMessageAsync(chatId, String.Format("command syntax error"))
     End Sub
 
-    Protected Friend Sub repNotifySubjectsTransferTransactionComplete(ttp As TransferTransactionPackage)
-        Try
-            If ttp.transaction.sFrom.profile IsNot Nothing Then
-                If ttp.transaction.sFrom.profile.hasTelegram Then
-                    sendTransferNotification(ttp.transaction.sFrom, ttp)
-                    repCoinBalance(ttp.transaction.sFrom)
-                End If
-            End If
-
-            If ttp.transaction.sTo.profile IsNot Nothing Then
-                If ttp.transaction.sTo.profile.hasTelegram <> 0 Then
-                    sendTransferNotification(ttp.transaction.sTo, ttp)
-                    repCoinBalance(ttp.transaction.sTo)
-                End If
-            End If
-        Catch ex As Exception
-
-        End Try
-
-    End Sub
-
-    Protected Friend Sub repNotifySubjectsTransferTransactionProposed(ttp As TransferTransactionPackage)
+    Protected Friend Sub repNotifySubjectsTransferTransaction(ttp As TransferTransactionPackage)
         Try
             If ttp.transaction.sFrom.profile IsNot Nothing Then
                 If ttp.transaction.sFrom.profile.hasTelegram Then

@@ -260,10 +260,9 @@ Public Class BlockMasterBlockChain
 
                 If Not ttp.transaction.requireAcceptance Then
                     addTransactionToCurrentBlock(ttp.transaction)
-                    App.H.repNotifySubjectsTransferTransactionComplete(ttp)
-                Else
-                    App.H.repNotifySubjectsTransferTransactionProposed(ttp)
                 End If
+
+                App.H.repNotifySubjectsTransferTransaction(ttp)
 
             Case "TransferTransactionAccept"
                 Dim oldttp = pendingTransferTransactions(ttp.transaction.transferId)
@@ -292,7 +291,7 @@ Public Class BlockMasterBlockChain
                     da.savePrivateBlock(ttp.envelopedPrivateBlock, ttp.transaction)
                 End If
 
-                App.H.repNotifySubjectsTransferTransactionComplete(ttp)
+                App.H.repNotifySubjectsTransferTransaction(ttp)
 
         End Select
 

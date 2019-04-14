@@ -42,7 +42,7 @@ Public MustInherit Class TransferTransaction
         Dim t As New StringBuilder(100)
 
         Select Case state
-            Case 3
+            Case 2
                 t.AppendLine("PROPOSTA DI SCAMBIO IN ARRIVO")
                 t.AppendLine("(rispondere con un OTP valido per accettare, oppure NO per rifiutare)")
                 t.AppendLine("---------------------------------------")
