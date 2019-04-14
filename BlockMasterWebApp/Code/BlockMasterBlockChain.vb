@@ -190,7 +190,7 @@ Public Class BlockMasterBlockChain
         Return currentBlock
     End Function
 
-    Public Function manageTransferTransaction(type As String, requester As Subject, ttp As TransferTransactionPackage, command As XElement) As TransferTransactionPackage
+    Public Function manageTransferTransaction(type As String, requester As Subject, ttp As TransferTransactionPackage) As TransferTransactionPackage
         Select Case type
             Case "TransferTransactionInit"
                 ttp.transaction.loadSubjects(Me)
@@ -236,9 +236,9 @@ Public Class BlockMasterBlockChain
                 executeHouseKeeping()
 
 
-            Case "TransferTransactionInfo"
-                Dim transferId As String = utility.getChildElementValue(command, "transferId")
-                ttp = pendingTransferTransactions.Values.Where(Function(x) (x.transaction.fromSubject = requester.id Or x.transaction.toSubject = requester.id) And (x.transaction.isPending Or x.transaction.transferId = transferId)).FirstOrDefault
+            'Case "TransferTransactionInfo"
+            '    Dim transferId As String = utility.getChildElementValue(command, "transferId")
+            '    ttp = pendingTransferTransactions.Values.Where(Function(x) (x.transaction.fromSubject = requester.id Or x.transaction.toSubject = requester.id) And (x.transaction.isPending Or x.transaction.transferId = transferId)).FirstOrDefault
 
 
             Case "TransferTransactionPropose"
@@ -302,7 +302,7 @@ Public Class BlockMasterBlockChain
         Return pendingTransferTransactions.Values.Where(Function(x) (x.transaction.fromSubject = userId And x.transaction.isAwaitingApproval)).Count
     End Function
 
-    Protected Function UserIncomingPendingTransfersCount(userId As String) As Integer
+    Protected Friend Function UserIncomingPendingTransfersCount(userId As String) As Integer
         Return pendingTransferTransactions.Values.Where(Function(x) (x.transaction.toSubject = userId And x.transaction.isAwaitingApproval)).Count
     End Function
 
@@ -330,6 +330,7 @@ Public Class BlockMasterBlockChain
         End If
         Return UserPendingTransfers(requester.id)
     End Function
+
 
     Public Function getPendingTransfer(requester As Subject, transferId As String) As TransferTransactionPackage
         Dim ttp As TransferTransactionPackage

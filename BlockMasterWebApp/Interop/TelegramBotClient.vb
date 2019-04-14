@@ -20,11 +20,15 @@ Public Class TelegramBotClient
         bot.StopReceiving()
     End Sub
 
-    Public Async Sub sendMessageAsync(chatId As Integer, messageText As String)
+    Public Async Sub sendMessageAsync(chatId As Integer, messageText As String, Optional silent As Boolean = True)
         Try
-            Dim t = Await bot.SendTextMessageAsync(chatId, messageText)
+            If chatId <> 0 Then
+                Dim t = Await bot.SendTextMessageAsync(chatId, messageText)
+            End If
         Catch ex As Exception
-            Throw New Exception("Errore inviando un messaggio con telegram: " & ex.Message, ex)
+            If Not silent Then
+                Throw New Exception("Errore inviando un messaggio con telegram: " & ex.Message, ex)
+            End If
         End Try
     End Sub
 

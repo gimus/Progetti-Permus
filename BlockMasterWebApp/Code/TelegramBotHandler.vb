@@ -10,6 +10,12 @@ Public Class TelegramBotHandler
         bot = New TelegramBotClient("BOT", My.Settings.iot_bot_key)
     End Sub
 
+    Protected ReadOnly Property M As BlockMasterBlockChain
+        Get
+            Return BlockMasterBlockChain.M
+        End Get
+    End Property
+
     Protected Function stringCouldBeAnOtp(s As String)
         Dim n As Integer
         Dim ts As String = Trim(s)
@@ -35,10 +41,28 @@ Public Class TelegramBotHandler
                 End If
 
             Case Else
-                Dim ts = Trim(t(0))
-                If stringCouldBeAnOtp(ts) Then
-                    If s.profile.asProtected.isOtpVerified(ts) Then
-                        bot.sendMessageAsync(sender, String.Format("OTP OK {0}", s.name))
+                Dim otp = Trim(t(0))
+                If stringCouldBeAnOtp(otp) Then
+                    If s.profile.asProtected.isOtpVerified(otp) Then
+                        If M.UserIncomingPendingTransfersCount(s.id) > 0 Then
+                            Dim ttp As TransferTransactionPackage = M.pendingTransferTransactions.Values.Where(Function(x) (x.transaction.fromSubject = s.id And x.transaction.isAwaitingApproval)).FirstOrDefault
+                            If ttp IsNot Nothing Then
+                                Dim attp As TransferTransactionPackage = s.profile.asProtected.getTransferTransactionInAcceptedState(ttp, otp)
+                                If attp IsNot Nothing Then
+                                    Try
+                                        ttp = M.manageTransferTransaction("TransferTransactionAccept", s, attp)
+                                        bot.sendMessageAsync(sender, "Transaction remotely accepted!")
+
+                                    Catch ex As Exception
+                                        bot.sendMessageAsync(sender, "Error accepint transaction remotely: ", ex.Message)
+                                    End Try
+                                End If
+                            End If
+                        Else
+                            bot.sendMessageAsync(sender, String.Format("OTP OK {0}", s.name))
+                        End If
+                    Else
+                        bot.sendMessageAsync(sender, String.Format("BAD OTP!{1}Provaci ancora {0}... sarai più fortunato!", s.name, vbCrLf))
                     End If
                 Else
                     bot.sendMessageAsync(sender, String.Format("Ciao {0}", s.name))
@@ -78,13 +102,13 @@ Public Class TelegramBotHandler
     End Sub
 
     Protected Sub sendTransferNotification(s As Subject, ttp As TransferTransactionPackage)
-        sendSubjectMessage(s.profile.asProtected.telegramId, ttp.transaction.transferNotification)
+        sendSubjectMessage(s, ttp.transaction.transferNotification)
 
         If s.profile.asProtected.hasCertificate And ttp.isPrivate Then
             Try
                 ttp.ensureBlockDecrypted(s.profile.asProtected.X509Certificate2)
                 If ttp.privateBlock IsNot Nothing Then
-                    sendSubjectMessage(s.profile.asProtected.telegramId, ttp.plainText())
+                    sendSubjectMessage(s, ttp.plainText())
                 End If
             Catch ex As Exception
             End Try
@@ -146,17 +170,12 @@ Public Class TelegramBotHandler
             End If
         End If
 
-        'Select Case messageText.ToLower
-        '    Case "whoami"
-        '        bot.sendMessageAsync(senderId, String.Format("you are: {0} ({1} {2})", senderId, e.Message.From.FirstName, e.Message.From.LastName))
-        '    Case Else
-        '        bot.sendMessageAsync(senderId, "ok")
-        'End Select
-
     End Sub
 
-    Public Sub sendSubjectMessage(subjectTelegramId As Long, msg As String)
-        bot.sendMessageAsync(subjectTelegramId, msg)
+    Public Sub sendSubjectMessage(subject As Subject, msg As String)
+        If subject.profile IsNot Nothing AndAlso subject.profile.hasTelegram Then
+            bot.sendMessageAsync(subject.profile.asProtected.telegramId, msg)
+        End If
     End Sub
 
     Public Sub AddSubject(s As Subject)

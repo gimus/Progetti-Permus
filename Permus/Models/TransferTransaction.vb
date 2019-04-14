@@ -207,7 +207,7 @@ Public MustInherit Class TransferTransaction
         Me.signatureFrom = computeSignature(cer, ts)
     End Sub
 
-    Protected Function computeSignature(cer As X509Certificate2, Optional timestamp As Long = 0) As Signature
+    Protected Friend Function computeSignature(cer As X509Certificate2, Optional timestamp As Long = 0) As Signature
         If timestamp = 0 Then
             timestamp = utility.getCurrentTimeStamp()
         End If

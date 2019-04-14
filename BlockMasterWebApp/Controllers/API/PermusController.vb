@@ -163,7 +163,7 @@ Namespace Controllers
                             Return tti.xml
 
                         Case Else
-                            rttp = BlockMasterBlockChain.M.manageTransferTransaction(commandType, requester, ttp, xcmd)
+                            rttp = BlockMasterBlockChain.M.manageTransferTransaction(commandType, requester, ttp)
                     End Select
                     Return rttp.xml
                 Else

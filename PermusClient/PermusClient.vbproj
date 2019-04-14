@@ -175,8 +175,8 @@
     <Compile Include="Controls\OTPControl.xaml.vb">
       <DependentUpon>OTPControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\PendingTrasnferDetail.xaml.vb">
-      <DependentUpon>PendingTrasnferDetail.xaml</DependentUpon>
+    <Compile Include="Controls\PendingTransferDetail.xaml.vb">
+      <DependentUpon>PendingTransferDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\InboundTransfersBrowser.xaml.vb">
       <DependentUpon>InboundTransfersBrowser.xaml</DependentUpon>
@@ -274,7 +274,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\PendingTrasnferDetail.xaml">
+    <Page Include="Controls\PendingTransferDetail.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

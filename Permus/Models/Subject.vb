@@ -305,12 +305,6 @@ Public Class SubjectProfile
             Return DirectCast(Me, ProtectedSubjectProfile)
         End Get
     End Property
-    'Public ReadOnly Property asPublic As PublicSubjectProfile
-    '    Get
-    '        Return DirectCast(Me, PublicSubjectProfile)
-    '    End Get
-    'End Property
-
 End Class
 Public Class ProtectedSubjectProfile
     Inherits SubjectProfile
@@ -364,5 +358,23 @@ Public Class ProtectedSubjectProfile
     Public Function isOtpVerified(otp As String) As Boolean
         Return OtpUtility.verify(otpSecretKey, otp)
     End Function
+
+    Public Function getTransferTransactionInAcceptedState(ttp As TransferTransactionPackage, otp As String) As TransferTransactionPackage
+        If isOtpVerified(otp) And Me.hasCertificate Then
+
+            If ttp IsNot Nothing Then
+                Dim cstt As CoSignedTransferTransaction = ttp.transaction
+                Dim cer As X509Certificate2 = Me.X509Certificate2
+                cstt.signatureTo = cstt.computeSignature(cer, utility.getCurrentTimeStamp)
+                cstt.updateState()
+                Return ttp
+            Else
+                Return Nothing
+            End If
+        Else
+            Return Nothing
+        End If
+    End Function
+
 
 End Class
