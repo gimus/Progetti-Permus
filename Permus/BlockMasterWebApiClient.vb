@@ -22,7 +22,7 @@ Public Class BlockMasterWebApiClient
             baseAddress = ApibaseAddress
         End If
         Client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/xml"))
-        Client.Timeout = New TimeSpan(0, 0, 4)
+        Client.Timeout = New TimeSpan(0, 0, 30)
     End Sub
 
     Public ReadOnly Property lastPingTime As Long
