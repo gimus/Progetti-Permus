@@ -344,19 +344,19 @@ Public Class ClientBlockChain
     End Sub
     Public Function IsOtpTestOk(otp As String) As Boolean
         Dim req() As Byte = prepareSignedCommand(currentUser.x509Certificate, String.Format("<command><funzione>otp_test</funzione><otp>{0}</otp></command>", otp))
-        Dim b As PublicSubjectProfile = api.SubjectProfile(req).Result
+        Dim b As SubjectProfile = api.SubjectProfile(req).Result
         Return b IsNot Nothing
     End Function
 
     Public Function IsPfxTestOk() As Boolean
         Dim req() As Byte = prepareSignedCommand(currentUser.x509Certificate, String.Format("<command><funzione>pfx_test</funzione></command>"))
-        Dim b As PublicSubjectProfile = api.SubjectProfile(req).Result
+        Dim b As SubjectProfile = api.SubjectProfile(req).Result
         Return b IsNot Nothing
     End Function
 
     Public Function ModifyCurrentUserProfile(attribute As String, value As String) As Boolean
         Dim req() As Byte = prepareSignedCommand(currentUser.x509Certificate, String.Format("<command><funzione>modifica_attributo</funzione><P1>{0}</P1><P2>{1}</P2><P3></P3><P4></P4></command>", attribute, value))
-        Dim b As PublicSubjectProfile = api.SubjectProfile(req).Result
+        Dim b As SubjectProfile = api.SubjectProfile(req).Result
         Return b IsNot Nothing
     End Function
 

@@ -76,16 +76,19 @@ Public Class Factory
             o.setPfxPin(leggiEDecripta(dr, "pfxPin"))
             o.telegramId = SupportoDB.LeggiLong(dr("telegramId"))
             o.setotpSecretKey(leggiEDecripta(dr, "otpSecretKey"))
+            o.hasTelegram = o.telegramId <> 0
 
             Try
                 Dim s As String = SupportoDB.LeggiString(dr("pfx"))
                 If s.Length > 100 Then
                     o.pfx = Convert.FromBase64String(s)
+                    o.hasPfx = True
+                Else
+                    o.hasPfx = False
                 End If
             Catch ex As Exception
 
             End Try
-
         End If
         Return o
     End Function
@@ -99,17 +102,16 @@ Public Class Factory
         End Try
     End Function
 
-
-    Public Shared Function leggiPublicSubjectProfile(dr As DataRow, Optional o As PublicSubjectProfile = Nothing) As PublicSubjectProfile
+    Public Shared Function leggiSubjectProfile(dr As DataRow, Optional o As SubjectProfile = Nothing) As SubjectProfile
         If dr IsNot Nothing Then
-            If o Is Nothing Then o = New PublicSubjectProfile
+            If o Is Nothing Then o = New SubjectProfile
             o.subjectId = SupportoDB.LeggiString(dr("subjectId"))
             o.name = SupportoDB.LeggiString(dr("name"))
             o.email = SupportoDB.LeggiString(dr("email"))
             Dim s As String = SupportoDB.LeggiString(dr("pfx"))
-            o.pfx = s.Length > 100
-            o.telegram = SupportoDB.LeggiLong(dr("telegramId")) <> 0
-            o.otp = SupportoDB.LeggiString(dr("otpSecretKey")) <> ""
+            o.hasPfx = s.Length > 100
+            o.hasTelegram = SupportoDB.LeggiLong(dr("telegramId")) <> 0
+            o.hasOtp = SupportoDB.LeggiString(dr("otpSecretKey")) <> ""
         End If
         Return o
     End Function

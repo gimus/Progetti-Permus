@@ -177,7 +177,7 @@ Namespace Controllers
         <EnableCors("*", "*", "*")>
         <Route("api/subject_profile")>
         <AcceptVerbs("POST", "GET")>
-        Public Function PostSubjectProfile(<FromUri> command As String) As PublicSubjectProfile
+        Public Function PostSubjectProfile(<FromUri> command As String) As SubjectProfile
             Try
                 Dim sd As New SignedData(utility.ConvertFromUrlSafeBase64String(command))
                 Dim requester As Subject = Subject.fromX509Certificate(sd.certificate)
@@ -195,15 +195,12 @@ Namespace Controllers
                     End Try
 
                     Dim funzione As String = xcmd.Element("funzione").Value
+                    Dim resultOk As Boolean
+
                     Select Case funzione
                         Case "otp_test"
                             Try
-                                If subjRequester.profile.asProtected.isOtpVerified(xcmd.Element("otp").Value) Then
-                                    Dim dt As DataTable = BlockMasterBlockChain.M.da.getSubjectProfiles("subjectId", subjRequester.id)
-                                    Return Factory.leggiPublicSubjectProfile(dt.Rows(0))
-                                Else
-                                    Return Nothing
-                                End If
+                                resultOk = subjRequester.profile.asProtected.isOtpVerified(xcmd.Element("otp").Value)
                             Catch ex As Exception
                                 Return Nothing
                             End Try
@@ -211,25 +208,22 @@ Namespace Controllers
                         Case "pfx_test"
                             Try
                                 Dim d() As Byte = subjRequester.profile.asProtected.computeDigitalSignatureAndGenerateP7M(ASCIIEncoding.UTF8.GetBytes("TEST"), utility.getCurrentTimeStamp)
-                                If d.Length > 0 Then
-                                    Dim dt As DataTable = BlockMasterBlockChain.M.da.getSubjectProfiles("subjectId", subjRequester.id)
-                                    Return Factory.leggiPublicSubjectProfile(dt.Rows(0))
-                                Else
-                                    Return Nothing
-                                End If
+                                resultOk = d.Length > 0
                             Catch ex As Exception
                                 Return Nothing
                             End Try
 
                         Case Else
-                            Dim dt As DataTable = BlockMasterBlockChain.M.da.GestioneProfilo(requester.id, xcmd.Element("funzione").Value, xcmd.Element("P1").Value, xcmd.Element("P2").Value, xcmd.Element("P3").Value, xcmd.Element("P4").Value)
-                            If dt IsNot Nothing Then
-                                subjRequester.profile = Factory.leggiProtectedSubjectProfile(dt.Rows(0))
-                                Return Factory.leggiPublicSubjectProfile(dt.Rows(0))
-                            Else
-                                Return Nothing
-                            End If
+                            resultOk = False
                     End Select
+
+                    If resultOk Then
+                        Dim dt As DataTable = BlockMasterBlockChain.M.da.getSubjectProfiles("subjectId", subjRequester.id)
+                        Return Factory.leggiSubjectProfile(dt.Rows(0))
+                    Else
+                        Return Nothing
+                    End If
+
 
 
                 Else

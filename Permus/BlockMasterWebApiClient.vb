@@ -62,8 +62,8 @@ Public Class BlockMasterWebApiClient
                     ttp.ensureBlockDecrypted()
                     Return ttp
 
-                Case "PublicSubjectProfile"
-                    Return response.Content.ReadAsAsync(Of PublicSubjectProfile).Result
+                Case "SubjectProfile"
+                    Return response.Content.ReadAsAsync(Of SubjectProfile).Result
                 Case "PendingTransfers"
                     Return New PendingTransfers(response.Content.ReadAsAsync(Of XElement).Result)
                 Case "TransferTransactionInfo"
@@ -114,9 +114,9 @@ Public Class BlockMasterWebApiClient
         Dim requestURI As String = String.Format("api/enroll?command={0}", utility.ConvertToUrlSafeBase64String(SignedRequestData))
         Return Await processRequest(requestURI, receiver, "Block")
     End Function
-    Public Async Function SubjectProfile(SignedCommand As Byte(), Optional receiver As iWebApiAsyncReceiver = Nothing) As Task(Of PublicSubjectProfile)
+    Public Async Function SubjectProfile(SignedCommand As Byte(), Optional receiver As iWebApiAsyncReceiver = Nothing) As Task(Of SubjectProfile)
         Dim requestURI As String = String.Format("api/subject_profile?command={0}", utility.ConvertToUrlSafeBase64String(SignedCommand))
-        Return Await processRequest(requestURI, receiver, "PublicSubjectProfile")
+        Return Await processRequest(requestURI, receiver, "SubjectProfile")
     End Function
 
     Public Async Function transferTransactionInit(ttp As TransferTransactionPackage, SignedCommand As Byte(), Optional receiver As iWebApiAsyncReceiver = Nothing) As Task(Of TransferTransactionPackage)

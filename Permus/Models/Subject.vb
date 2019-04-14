@@ -11,11 +11,12 @@ Public Class Subject
     Public Property email As String = Nothing
     Public Property x509Certificates As New Certificates
 
-    Public token As String = ""
-    Public lastPing As DateTime = DateTime.MinValue
     Public Property coinBalance As New CoinBalance
     Public Property isAuthority As Boolean = False
     Public Property profile As SubjectProfile
+
+    Public token As String = ""
+    Public lastPing As DateTime = DateTime.MinValue
 
     Public tag As Object
 
@@ -295,16 +296,20 @@ Public Class SubjectProfile
     Public name As String
     Public email As String
 
+    Public hasTelegram As Boolean = False
+    Public hasPfx As Boolean = False
+    Public hasOtp As Boolean = False
+
     Public ReadOnly Property asProtected As ProtectedSubjectProfile
         Get
             Return DirectCast(Me, ProtectedSubjectProfile)
         End Get
     End Property
-    Public ReadOnly Property asPublic As PublicSubjectProfile
-        Get
-            Return DirectCast(Me, PublicSubjectProfile)
-        End Get
-    End Property
+    'Public ReadOnly Property asPublic As PublicSubjectProfile
+    '    Get
+    '        Return DirectCast(Me, PublicSubjectProfile)
+    '    End Get
+    'End Property
 
 End Class
 Public Class ProtectedSubjectProfile
@@ -320,13 +325,8 @@ Public Class ProtectedSubjectProfile
     End Sub
     Public Sub setotpSecretKey(k As String)
         otpSecretKey = k
+        hasOtp = True
     End Sub
-
-    Public ReadOnly Property otp As Boolean
-        Get
-            Return otpSecretKey <> ""
-        End Get
-    End Property
 
     Public ReadOnly Property hasCertificate As Boolean
         Get
@@ -365,12 +365,4 @@ Public Class ProtectedSubjectProfile
         Return OtpUtility.verify(otpSecretKey, otp)
     End Function
 
-End Class
-
-Public Class PublicSubjectProfile
-    Inherits SubjectProfile
-
-    Public telegram As Boolean
-    Public pfx As Boolean
-    Public otp As Boolean
 End Class

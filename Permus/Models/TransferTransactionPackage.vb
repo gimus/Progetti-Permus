@@ -4,22 +4,10 @@ Imports System.Text
 Public Class TransferTransactionPackage
     Inherits PermusObject
     Public privateBlock As Block
-
     Public Property transaction As TransferTransaction
     Public Property envelopedPrivateBlock As New EnvelopedBlock
 
-    Public Sub correlateCompensations(C As ClientBlockChain)
-        ensureBlockDecrypted()
-        If transaction.isPrivate And privateBlock IsNot Nothing Then
-            privateBlock.transactions.correlateCompensations(C)
-        End If
-    End Sub
-
-    Public Sub ensureBlockDecrypted(Optional cer As X509Certificate2 = Nothing)
-        If privateBlock Is Nothing Then
-            privateBlock = envelopedPrivateBlock.getBlock(cer)
-        End If
-    End Sub
+    Public tags As New Tags
 
     Public Sub New()
     End Sub
@@ -40,6 +28,20 @@ Public Class TransferTransactionPackage
         End If
     End Sub
 
+
+    Public Sub correlateCompensations(C As ClientBlockChain)
+        ensureBlockDecrypted()
+        If transaction.isPrivate And privateBlock IsNot Nothing Then
+            privateBlock.transactions.correlateCompensations(C)
+        End If
+    End Sub
+
+    Public Sub ensureBlockDecrypted(Optional cer As X509Certificate2 = Nothing)
+        If privateBlock Is Nothing Then
+            privateBlock = envelopedPrivateBlock.getBlock(cer)
+        End If
+    End Sub
+
     Public Overrides Function plainText(Optional type As String = "") As String
         Dim t As New StringBuilder(2000)
         If transaction IsNot Nothing Then
@@ -53,9 +55,8 @@ Public Class TransferTransactionPackage
                 t.Append(transaction.sAction)
             End If
         End If
-            Return t.ToString
+        Return t.ToString
     End Function
-
 
     Public Overrides Function html(Optional type As String = "") As String
         Dim t As New StringBuilder(2000)
@@ -93,6 +94,8 @@ Public Class TransferTransactionPackage
             Return transaction.isPrivate
         End Get
     End Property
+
+
 
 End Class
 
@@ -259,5 +262,11 @@ Public Class PendingTransfers
             Me.Add(pti.id, pti)
         Next
     End Sub
+
+End Class
+
+Public Class Tags
+    Public Property subjectInformedByShortMessage As Boolean
+    Public Property subjectInformedByMail As Boolean
 
 End Class

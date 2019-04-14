@@ -14,7 +14,7 @@ Public Class TelegramBotHandler
         Dim t() As String = msg.Split(" ")
         Select Case t(0).ToLowerInvariant
             Case "otp"
-                If s.profile.asProtected.otp Then
+                If s.profile.hasOtp Then
                     If t.Length > 1 Then
                         If s.profile.asProtected.isOtpVerified(t(1)) Then
                             bot.sendMessageAsync(sender, String.Format("OTP OK {0}", s.name))
@@ -45,14 +45,14 @@ Public Class TelegramBotHandler
     Protected Friend Sub repNotifySubjectsTransferTransactionComplete(ttp As TransferTransactionPackage)
         Try
             If ttp.transaction.sFrom.profile IsNot Nothing Then
-                If ttp.transaction.sFrom.profile.asProtected.telegramId <> 0 Then
+                If ttp.transaction.sFrom.profile.hasTelegram Then
                     sendTransferNotification(ttp.transaction.sFrom, ttp)
                     repCoinBalance(ttp.transaction.sFrom)
                 End If
             End If
 
             If ttp.transaction.sTo.profile IsNot Nothing Then
-                If ttp.transaction.sTo.profile.asProtected.telegramId <> 0 Then
+                If ttp.transaction.sTo.profile.hasTelegram <> 0 Then
                     sendTransferNotification(ttp.transaction.sTo, ttp)
                     repCoinBalance(ttp.transaction.sTo)
                 End If

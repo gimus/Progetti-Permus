@@ -151,7 +151,7 @@ Public Class BlockMasterBlockChain
         End If
         If dt.Rows.Count > 0 Then
             subject.profile = Factory.leggiProtectedSubjectProfile(dt.Rows(0))
-            If subject.profile.asProtected.telegramId <> 0 Then
+            If subject.profile.hasTelegram Then
                 App.H.AddSubject(subject)
             End If
         End If
@@ -359,25 +359,5 @@ Public Class BlockMasterBlockChain
             Throw New Exception(errorMessage)
         End If
     End Sub
-
-    'Protected Sub notifySubjectsTransferTransactionComplete(ttp As TransferTransactionPackage)
-    '    Try
-
-    '        If ttp.transaction.sFrom.profile IsNot Nothing Then
-    '            If ttp.transaction.sFrom.profile.asProtected.telegramId <> 0 Then
-    '                App.H.sendSubjectMessage(ttp.transaction.sFrom.profile.asProtected.telegramId, ttp.transaction.transferNotification)
-    '            End If
-    '        End If
-
-    '        If ttp.transaction.sTo.profile IsNot Nothing Then
-    '            If ttp.transaction.sTo.profile.asProtected.telegramId <> 0 Then
-    '                App.H.sendSubjectMessage(ttp.transaction.sTo.profile.asProtected.telegramId, ttp.transaction.transferNotification)
-    '            End If
-    '        End If
-    '    Catch ex As Exception
-
-    '    End Try
-
-    'End Sub
 
 End Class
