@@ -228,6 +228,8 @@ Public Class BlockMasterBlockChain
                 check(ttp.transaction.fromSubject = requester.id, "Requester is not subjectFrom")
 
                 ttp.transaction.transferId = Guid.NewGuid.ToString
+
+                ttp.transaction.updateState()
                 Me.pendingTransferTransactions.Add(ttp.transaction.transferId, ttp)
 
                 ' approfittiamo per fare un po' di pulizia
@@ -253,6 +255,8 @@ Public Class BlockMasterBlockChain
                 check(ttp.transaction.verifySignature(ttp.transaction.signatureFrom), "Bad SignatureFrom")
 
                 Me.pendingTransferTransactions(ttp.transaction.transferId) = ttp
+
+                ttp.transaction.updateState()
 
                 If Not ttp.transaction.requireAcceptance Then
                     addTransactionToCurrentBlock(ttp.transaction)
@@ -280,9 +284,10 @@ Public Class BlockMasterBlockChain
                 cst.signatureTo.obtainCertificateFromSubject(ttp.transaction.sTo)
                 check(cst.verifySignature(cst.signatureTo), "Bad SignatureTo")
 
+                ttp.transaction.updateState()
+
                 addTransactionToCurrentBlock(ttp.transaction)
                 Me.pendingTransferTransactions(ttp.transaction.transferId) = ttp
-
                 If ttp.isPrivate Then
                     da.savePrivateBlock(ttp.envelopedPrivateBlock, ttp.transaction)
                 End If
@@ -290,10 +295,6 @@ Public Class BlockMasterBlockChain
                 App.H.repNotifySubjectsTransferTransactionComplete(ttp)
 
         End Select
-
-        If ttp IsNot Nothing Then
-            ttp.transaction.updateState()
-        End If
 
         Return ttp
     End Function
