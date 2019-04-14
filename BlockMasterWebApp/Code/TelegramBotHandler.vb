@@ -45,7 +45,7 @@ Public Class TelegramBotHandler
                 If stringCouldBeAnOtp(otp) Then
                     If s.profile.asProtected.isOtpVerified(otp) Then
                         If M.UserIncomingPendingTransfersCount(s.id) > 0 Then
-                            Dim ttp As TransferTransactionPackage = M.pendingTransferTransactions.Values.Where(Function(x) (x.transaction.fromSubject = s.id And x.transaction.isAwaitingApproval)).FirstOrDefault
+                            Dim ttp As TransferTransactionPackage = M.pendingTransferTransactions.Values.Where(Function(x) (x.transaction.toSubject = s.id And x.transaction.isAwaitingApproval)).FirstOrDefault
                             If ttp IsNot Nothing Then
                                 Dim attp As TransferTransactionPackage = s.profile.asProtected.getTransferTransactionInAcceptedState(ttp, otp)
                                 If attp IsNot Nothing Then
