@@ -10,6 +10,12 @@ Public Class TelegramBotHandler
         bot = New TelegramBotClient("BOT", My.Settings.iot_bot_key)
     End Sub
 
+    Protected Function stringCouldBeAnOtp(s As String)
+        Dim n As Integer
+        Dim ts As String = Trim(s)
+        Return ts.Length = 6 And Integer.TryParse(ts, n)
+    End Function
+
     Protected Sub handleAuthenticatedMessage(sender As Integer, s As Subject, msg As String)
         Dim t() As String = msg.Split(" ")
         Select Case t(0).ToLowerInvariant
@@ -29,8 +35,16 @@ Public Class TelegramBotHandler
                 End If
 
             Case Else
-                bot.sendMessageAsync(sender, String.Format("Ciao {0}", s.name))
-                repCoinBalance(s)
+                Dim ts = Trim(t(0))
+                If stringCouldBeAnOtp(ts) Then
+                    If s.profile.asProtected.isOtpVerified(ts) Then
+                        bot.sendMessageAsync(sender, String.Format("OTP OK {0}", s.name))
+                    End If
+                Else
+                    bot.sendMessageAsync(sender, String.Format("Ciao {0}", s.name))
+                    repCoinBalance(s)
+                End If
+
         End Select
     End Sub
 
@@ -52,7 +66,7 @@ Public Class TelegramBotHandler
             End If
 
             If ttp.transaction.sTo.profile IsNot Nothing Then
-                If ttp.transaction.sTo.profile.hasTelegram <> 0 Then
+                If ttp.transaction.sTo.profile.hasTelegram Then
                     sendTransferNotification(ttp.transaction.sTo, ttp)
                     repCoinBalance(ttp.transaction.sTo)
                 End If
