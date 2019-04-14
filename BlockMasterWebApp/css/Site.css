@@ -16,5 +16,17 @@ textarea {
 }
 
 .data {
-    font-family:'Courier New';
+    font-family: 'Courier New';
+}
+
+.blink {
+    font-family: 'Courier New';
+    color: red;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
 }

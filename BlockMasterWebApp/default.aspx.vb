@@ -29,7 +29,7 @@ Public Class _default
         tu.AppendLine("<table cellpadding='2'>")
         tu.AppendFormat("<tr style='background-color:#EFEFEF'><th></th><th>Subject Name</th><th>coin balance</th></tr>")
         For Each s As Subject In M.subjects.Values
-            tu.AppendFormat("<tr style='border-bottom: solid 1px #DFDFDF' ><td>{0}</td><td style=' font-weight: bold;'>{1}</td><td style='text-align: right;'  >{2}</td></tr>", "", s.name, s.coinBalance.balance.ToString("0.00"))
+            tu.AppendFormat("<tr style='border-bottom: solid 1px #DFDFDF' ><td>{0}</td><td style=' font-weight: bold;'>{1}</td><td style='text-align: right;'  >{2}</td><td><span class='blink'>{3}</span></td></tr>", "", s.name, s.coinBalance.balance.ToString("0.00"), IIf(s.isOnline(), " on line", ""))
             tu.AppendLine()
         Next
         tu.AppendLine("</table>")

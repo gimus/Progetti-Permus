@@ -26,6 +26,10 @@ Public Class Subject
         End Get
     End Property
 
+    Public Function isOnline(Optional seconds As Integer = 10) As Boolean
+        Return Now().Subtract(Me.lastPing).TotalSeconds < seconds
+    End Function
+
     Public ReadOnly Property x509Certificate As X509Certificate2
         Get
             If x509Certificates.Count > 0 Then
