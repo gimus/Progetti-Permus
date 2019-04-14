@@ -20,6 +20,7 @@ Public MustInherit Class TransferTransaction
     Protected _isCompensation As Boolean = False
     Protected _requireAcceptance As Boolean = False
     Protected _title As String = "?"
+    Protected _isCancelled As Boolean = False
     Protected state As Integer = 0
 
     Public Property transferId As String                    ' identificativo unico del trasferimento
@@ -37,33 +38,44 @@ Public MustInherit Class TransferTransaction
         Me._transactionType = TransactionTypeEnum.Transfer
     End Sub
 
+    Public ReadOnly Property isCancelled As Boolean
+        Get
+            Return _isCancelled
+        End Get
+    End Property
+
+    Public Sub cancel()
+        _isCancelled = True
+    End Sub
+
     Public Overridable Function transferNotification() As String
 
         Dim t As New StringBuilder(100)
+        If _isCancelled Then
+            t.AppendLine("OPERAZIONE DI SCAMBIO ANNULLATA")
+        Else
+            Select Case state
+                Case 2
+                    t.AppendLine("PROPOSTA DI SCAMBIO IN ARRIVO")
+                    t.AppendLine(" è possibile gestirla via telegram rispondendo con:")
+                    t.AppendLine("- un OTP valido per accettare;")
+                    t.AppendLine("- no, annulla o rifuta per rifiutare;")
+                Case 4
+                    t.AppendLine("OPERAZIONE DI SCAMBIO REGISTRATA")
+            End Select
 
-        Select Case state
-            Case 2
-                t.AppendLine("PROPOSTA DI SCAMBIO IN ARRIVO")
-                t.AppendLine("(rispondere con un OTP valido per accettare, oppure NO per rifiutare)")
-                t.AppendLine("---------------------------------------")
-                t.AppendLine("")
-            Case 4
-                t.AppendLine("OPERAZIONE DI SCAMBIO REGISTRATA")
-                t.AppendLine("---------------------------------------")
-                t.AppendLine("")
-        End Select
+        End If
 
-        t.AppendFormat("FROM: {0}", sFrom.name)
+        t.AppendLine("-------------------------------------------")
+        t.AppendFormat("da: {0}", sFrom.name)
         t.AppendLine()
-        t.AppendFormat("  TO: {0}", sTo.name)
+        t.AppendFormat("  a: {0}", sTo.name)
         t.AppendLine()
-        t.AppendFormat("SUBJ: {0}", _title)
+        t.AppendFormat("oggetto: {0}", _title)
         t.AppendLine()
         t.AppendFormat("{0}", sAction)
-        t.AppendLine()
         Return t.ToString
     End Function
-
 
     Public ReadOnly Property transferTransactionTitle As String
         Get
@@ -281,7 +293,7 @@ Public Class CoinTransfer
 
     Public Overrides Function html(Optional type As String = "") As String
         Dim t As New StringBuilder(100)
-        t.AppendFormat("<div>trasferimento di {0} coin  da {1} a {2} con il messaggio: {3}</div>", coinAmount, sFrom.name, sTo.name, message)
+        t.AppendFormat("<div>trasferimento di {0} coin  da {1} a {2} con il messaggio {3}</div>", coinAmount, sFrom.name, sTo.name, message)
         Return t.ToString
     End Function
 
@@ -290,7 +302,7 @@ End Class
 Public Class CoinCreation
     Inherits TransferTransaction
     Public Sub New()
-        Me._title = "Coin Creation and Transfer"
+        Me._title = "Coin Creation And Transfer"
         Me._transferTransactionType = TransferTransactionTypeEnum.CoinCreation
     End Sub
 

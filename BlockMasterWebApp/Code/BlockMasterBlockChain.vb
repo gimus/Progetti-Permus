@@ -262,7 +262,7 @@ Public Class BlockMasterBlockChain
                     addTransactionToCurrentBlock(ttp.transaction)
                 End If
 
-                App.H.repNotifySubjectsTransferTransaction(ttp)
+                App.H.notifySubjectsTransferTransaction(ttp)
 
             Case "TransferTransactionAccept"
                 Dim oldttp = pendingTransferTransactions(ttp.transaction.transferId)
@@ -292,7 +292,7 @@ Public Class BlockMasterBlockChain
 
                 ttp.transaction.updateState()
 
-                App.H.repNotifySubjectsTransferTransaction(ttp)
+                App.H.notifySubjectsTransferTransaction(ttp)
 
         End Select
 
@@ -327,6 +327,8 @@ Public Class BlockMasterBlockChain
         ttp = pendingTransferTransactions.Values.Where(Function(x) x.transaction.affectsSubject(requester.id) And x.transaction.transferId = transferId).FirstOrDefault
         If ttp IsNot Nothing Then
             pendingTransferTransactions.Remove(ttp.transaction.transferId)
+            ttp.transaction.cancel()
+            App.H.notifySubjectsTransferTransaction(ttp)
             ttp = Nothing
         End If
         Return UserPendingTransfers(requester.id)

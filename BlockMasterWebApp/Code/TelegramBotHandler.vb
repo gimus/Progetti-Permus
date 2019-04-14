@@ -40,7 +40,7 @@ Public Class TelegramBotHandler
                     bot.sendMessageAsync(sender, String.Format("OTP CODE NOT SET {0}", s.name))
                 End If
 
-            Case "annulla", "cancella", "rifiuta", "cancel"
+            Case "annulla", "cancella", "rifiuta", "cancel", "no"
                 If M.UserIncomingPendingTransfersCount(s.id) > 0 Then
                     Dim ttp As TransferTransactionPackage = M.pendingTransferTransactions.Values.Where(Function(x) (x.transaction.toSubject = s.id And x.transaction.isAwaitingApproval)).FirstOrDefault
                     If ttp IsNot Nothing Then
@@ -96,7 +96,7 @@ Public Class TelegramBotHandler
         bot.sendMessageAsync(chatId, String.Format("command syntax error"))
     End Sub
 
-    Protected Friend Sub repNotifySubjectsTransferTransaction(ttp As TransferTransactionPackage)
+    Protected Friend Sub notifySubjectsTransferTransaction(ttp As TransferTransactionPackage)
         Try
             If ttp.transaction.sFrom.profile IsNot Nothing Then
                 If ttp.transaction.sFrom.profile.hasTelegram Then
@@ -118,6 +118,7 @@ Public Class TelegramBotHandler
     End Sub
 
     Protected Sub sendTransferNotification(s As Subject, ttp As TransferTransactionPackage)
+
         sendSubjectMessage(s, ttp.transaction.transferNotification)
 
         If s.profile.asProtected.hasCertificate And ttp.isPrivate Then

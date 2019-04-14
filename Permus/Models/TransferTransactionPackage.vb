@@ -7,7 +7,6 @@ Public Class TransferTransactionPackage
     Public Property transaction As TransferTransaction
     Public Property envelopedPrivateBlock As New EnvelopedBlock
 
-
     Public Sub New()
     End Sub
 
@@ -26,7 +25,6 @@ Public Class TransferTransactionPackage
             fromXml(e)
         End If
     End Sub
-
 
     Public Sub correlateCompensations(C As ClientBlockChain)
         ensureBlockDecrypted()
