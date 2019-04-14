@@ -38,7 +38,7 @@ Public MustInherit Class TransferTransaction
     End Sub
 
     Public Overridable Function transferNotification() As String
-        Me.transferTransactionState
+
         Dim t As New StringBuilder(100)
 
         Select Case state
