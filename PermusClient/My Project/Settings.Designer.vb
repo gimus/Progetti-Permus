@@ -55,7 +55,7 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.UserScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("https://localhost:44360/ ")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("http://www.pardesca.it:4080/permus/")>  _
     Public Property serverUrl() As String
         Get
             Return CType(Me("serverUrl"),String)
@@ -103,7 +103,7 @@ Partial Friend NotInheritable Class MySettings
     
     <Global.System.Configuration.UserScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("3")>  _
     Public Property BlockMasterPollingTimerIntervalSeconds() As String
         Get
             Return CType(Me("BlockMasterPollingTimerIntervalSeconds"),String)

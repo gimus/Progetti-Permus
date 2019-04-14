@@ -123,7 +123,7 @@ Class MainWindow
         End If
 
         If si IsNot Nothing Then
-
+            subj.token = si.requesterInfo.token
             C.currentUser = subj
 
             If C.currentUser IsNot Nothing Then

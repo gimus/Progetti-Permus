@@ -283,13 +283,14 @@ Public Class BlockMasterBlockChain
                 cst.signatureTo.obtainCertificateFromSubject(ttp.transaction.sTo)
                 check(cst.verifySignature(cst.signatureTo), "Bad SignatureTo")
 
-                ttp.transaction.updateState()
 
                 addTransactionToCurrentBlock(ttp.transaction)
                 Me.pendingTransferTransactions(ttp.transaction.transferId) = ttp
                 If ttp.isPrivate Then
                     da.savePrivateBlock(ttp.envelopedPrivateBlock, ttp.transaction)
                 End If
+
+                ttp.transaction.updateState()
 
                 App.H.repNotifySubjectsTransferTransaction(ttp)
 

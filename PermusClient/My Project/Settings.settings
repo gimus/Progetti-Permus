@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="serverUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://localhost:44360/ </Value>
+      <Value Profile="(Default)">http://www.pardesca.it:4080/permus/</Value>
     </Setting>
     <Setting Name="localDbConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -15,7 +15,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="BlockMasterPollingTimerIntervalSeconds" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="test" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://localhost:44360/  http://213.251.184.127:4080/permus/</Value>
