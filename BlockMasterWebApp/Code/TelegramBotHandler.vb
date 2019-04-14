@@ -40,6 +40,22 @@ Public Class TelegramBotHandler
                     bot.sendMessageAsync(sender, String.Format("OTP CODE NOT SET {0}", s.name))
                 End If
 
+            Case "annulla", "cancella", "rifiuta", "cancel"
+                If M.UserIncomingPendingTransfersCount(s.id) > 0 Then
+                    Dim ttp As TransferTransactionPackage = M.pendingTransferTransactions.Values.Where(Function(x) (x.transaction.toSubject = s.id And x.transaction.isAwaitingApproval)).FirstOrDefault
+                    If ttp IsNot Nothing Then
+                        Try
+                            ttp = M.manageTransferTransaction("TransferTransactionCancel", s, ttp)
+                            bot.sendMessageAsync(sender, "Transaction remotely cancelled!")
+
+                        Catch ex As Exception
+                            bot.sendMessageAsync(sender, "Error cancelling transaction remotely: {0}", ex.Message)
+                        End Try
+                    End If
+                Else
+                    bot.sendMessageAsync(sender, String.Format("No pending transfer transactions"))
+                End If
+
             Case Else
                 Dim otp = Trim(t(0))
                 If stringCouldBeAnOtp(otp) Then
@@ -54,7 +70,7 @@ Public Class TelegramBotHandler
                                         bot.sendMessageAsync(sender, "Transaction remotely accepted!")
 
                                     Catch ex As Exception
-                                        bot.sendMessageAsync(sender, "Error accepint transaction remotely: ", ex.Message)
+                                        bot.sendMessageAsync(sender, "Error accepting transaction remotely: {0}", ex.Message)
                                     End Try
                                 End If
                             End If
