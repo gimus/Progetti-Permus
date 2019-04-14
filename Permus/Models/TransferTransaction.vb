@@ -61,12 +61,14 @@ Public MustInherit Class TransferTransaction
                     t.AppendLine("- un OTP valido per accettare;")
                     t.AppendLine("- no, annulla o rifuta per rifiutare;")
                 Case 4
-                    t.AppendLine("OPERAZIONE DI SCAMBIO REGISTRATA")
+                    If Me.transactionId <> "" Then
+                        t.AppendLine("OPERAZIONE DI SCAMBIO REGISTRATA")
+                    End If
             End Select
 
         End If
 
-        t.AppendLine("-------------------------------------------")
+        t.AppendLine("----------------------------------------------------------------")
         t.AppendFormat("da: {0}", sFrom.name)
         t.AppendLine()
         t.AppendFormat("  a: {0}", sTo.name)

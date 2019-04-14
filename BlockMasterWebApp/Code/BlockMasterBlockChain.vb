@@ -256,11 +256,12 @@ Public Class BlockMasterBlockChain
 
                 Me.pendingTransferTransactions(ttp.transaction.transferId) = ttp
 
-                ttp.transaction.updateState()
 
                 If Not ttp.transaction.requireAcceptance Then
                     addTransactionToCurrentBlock(ttp.transaction)
                 End If
+
+                ttp.transaction.updateState()
 
                 App.H.notifySubjectsTransferTransaction(ttp)
 
