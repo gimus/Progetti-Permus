@@ -13,6 +13,7 @@ Public Class StatoWindow
                 w.Height = CInt(valori(4))
             Catch ex As Exception
             End Try
+
         End If
     End Sub
 
