@@ -192,4 +192,8 @@ Public Class TelegramBotHandler
         End If
     End Function
 
+    Public Sub sendErrorLogMessage(msg As String)
+        bot.SendErrorLogMessage(msg)
+    End Sub
+
 End Class

@@ -5,6 +5,7 @@ Public Class TelegramBotClient
     Public name As String = "BOT"
     Protected bot As Telegram.Bot.TelegramBotClient
     Public Event TextMessageReceived(sender As TelegramBotClient, messageText As String, e As MessageEventArgs)
+    Protected errorsLogChatId As Long = 237561278
 
     Public Sub New(name As String, botKey As String)
         Me.name = name
@@ -88,11 +89,12 @@ Public Class TelegramBotClient
         Select Case m.Type
             Case Types.Enums.MessageType.Text
                 RaiseEvent TextMessageReceived(Me, m.Text, e)
-
-
-
             Case Else
         End Select
+    End Sub
+
+    Public Sub SendErrorLogMessage(msg As String)
+        sendMessageAsync(Me.errorsLogChatId, msg, True)
     End Sub
 
 End Class

@@ -167,9 +167,11 @@ Namespace Controllers
                     End Select
                     Return rttp.xml
                 Else
+                    App.H.sendErrorLogMessage("TTPH1 Error: bad Request")
                     Throw New HttpResponseException(New HttpResponseMessage(HttpStatusCode.BadRequest) With {.ReasonPhrase = "request not in sync!"})
                 End If
             Catch ex As Exception
+                App.H.sendErrorLogMessage("TTPH2 Error:" & ex.Message)
                 Throw New HttpResponseException(New HttpResponseMessage(HttpStatusCode.BadRequest) With {.ReasonPhrase = ex.Message})
             End Try
         End Function
