@@ -87,7 +87,7 @@ Public Class TransferElement
         Dim t As New StringBuilder(1000)
         Select Case type
             Case "private_table_row"
-                t.AppendFormat("{0} {1}", Me.transferObject.description, Me.transferObject.cost.ToString("#.##"))
+                t.AppendFormat("- {0} {1}", Me.transferObject.description, Me.transferObject.cost.ToString("#.##"))
                 t.AppendLine()
         End Select
         Return t.ToString
@@ -227,8 +227,8 @@ Public Class TransferCompensation
         Select Case type
             Case "private_table_row"
                 If Me.relatedTransferTransaction IsNot Nothing Then
-                    t.AppendFormat("{0} {1}", Me.relatedTimestamp.ToString("dd/MM/yy"), Me.relatedDescription)
-                    t.AppendFormat("{0}", String.Format("{0}%", Me.percentCompensated))
+                    t.AppendFormat("- {0} {1}", Me.relatedTimestamp.ToString("dd/MM/yy"), Me.relatedDescription)
+                    t.AppendFormat(" al {0}", String.Format("{0}%", Me.percentCompensated))
                     t.AppendLine()
                 End If
 

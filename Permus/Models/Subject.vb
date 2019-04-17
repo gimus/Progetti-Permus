@@ -13,6 +13,7 @@ Public Class Subject
 
     Public Property coinBalance As New CoinBalance
     Public Property isAuthority As Boolean = False
+    Public Property isPublic As Boolean = False
     Public Property profile As SubjectProfile
 
     Public token As String = ""
@@ -54,6 +55,13 @@ Public Class Subject
                 subject.id = ssss(1)
             End If
         Next
+
+        ' un modo grezzo per determinare se il soggetto è pubblico, 
+        ' in seguito occorrerà definire uno standard per codificare tale informazione nella subject string
+        If subject.id.ToUpper.StartsWith("AAL0") Then
+            subject.isPublic = True
+        End If
+
         Return subject
     End Function
 

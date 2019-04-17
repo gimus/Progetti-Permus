@@ -22,6 +22,7 @@ Public MustInherit Class TransferTransaction
     Protected _title As String = "?"
     Protected _isCancelled As Boolean = False
     Protected state As Integer = 0
+    Protected Shared hline As String = "-----------------------------------------"
 
     Public Property transferId As String                    ' identificativo unico del trasferimento
     Public Property fromSubject As String                   ' identificativo di chi cede il bene convenzionalmente accettato dagli utenti della chain
@@ -47,35 +48,48 @@ Public MustInherit Class TransferTransaction
     Public Sub cancel()
         _isCancelled = True
     End Sub
+    Public Function transferHeaderText() As String
+        Dim t As New StringBuilder(100)
+        t.AppendFormat("da: {0}", sFrom.name)
+        t.AppendLine()
+        t.AppendFormat(" a: {0}", sTo.name)
+        t.AppendLine()
+        t.AppendLine()
+        t.AppendFormat("oggetto: {0} - {1}", _title, sAction)
+        t.AppendLine()
+        t.AppendFormat("   note: {0}", message)
+        t.AppendLine()
+        Return t.ToString
+    End Function
 
-    Public Overridable Function transferNotification() As String
+    Public Overrides Function plainText(Optional type As String = "") As String
+        Return transferHeaderText()
+    End Function
+
+    Public Overridable Function transferNotification(Optional fromTelegram As Boolean = False) As String
 
         Dim t As New StringBuilder(100)
         If _isCancelled Then
-            t.AppendLine("OPERAZIONE DI SCAMBIO ANNULLATA")
+            t.AppendLine("SCAMBIO ANNULLATO")
         Else
             Select Case state
                 Case 2
-                    t.AppendLine("PROPOSTA DI SCAMBIO IN ARRIVO")
-                    t.AppendLine(" è possibile gestirla via telegram rispondendo con:")
-                    t.AppendLine("- un OTP valido per accettare;")
-                    t.AppendLine("- no, annulla o rifuta per rifiutare;")
+                    t.AppendLine("PROPOSTA DI SCAMBIO")
+                    If fromTelegram Then
+                        t.AppendLine(hline)
+                        t.AppendLine("Puoi gestirla rispondendo con:")
+                        t.AppendLine("- un OTP valido per accettare;")
+                        t.AppendLine("- no, annulla o rifuta per rifiutare;")
+                    End If
                 Case 4
                     If Me.transactionId <> "" Then
-                        t.AppendLine("OPERAZIONE DI SCAMBIO REGISTRATA")
+                        t.AppendLine("SCAMBIO REGISTRATO")
                     End If
             End Select
 
         End If
-
-        t.AppendLine("----------------------------------------------------------------")
-        t.AppendFormat("da: {0}", sFrom.name)
-        t.AppendLine()
-        t.AppendFormat("  a: {0}", sTo.name)
-        t.AppendLine()
-        t.AppendFormat("oggetto: {0}", _title)
-        t.AppendLine()
-        t.AppendFormat("{0}", sAction)
+        t.AppendLine(hline)
+        t.Append(transferHeaderText)
         Return t.ToString
     End Function
 
@@ -289,7 +303,7 @@ Public Class CoinTransfer
 
     Public Overrides ReadOnly Property sAction As String
         Get
-            Return String.Format("Trasferimento di {0} {1}", sCoins, sMessage)
+            Return String.Format("Trasferimento di {0}", sCoins)
         End Get
     End Property
 
@@ -299,6 +313,9 @@ Public Class CoinTransfer
         Return t.ToString
     End Function
 
+    Public Overrides Function plainText(Optional type As String = "") As String
+        Return MyBase.plainText(type)
+    End Function
 End Class
 
 Public Class CoinCreation
@@ -310,7 +327,7 @@ Public Class CoinCreation
 
     Public Overrides ReadOnly Property sAction As String
         Get
-            Return String.Format("Creazione e trasferimento di {0} {1}", sCoins, sMessage)
+            Return String.Format("Creazione e trasferimento di {0}", sCoins)
         End Get
     End Property
 
@@ -446,7 +463,7 @@ Public Class PublicTransfer
 
     Public Overrides ReadOnly Property sAction As String
         Get
-            Return String.Format("{0} {1}", Me.transferObject.description, sMessage)
+            Return String.Format("{0}", Me.transferObject.description)
         End Get
     End Property
 
@@ -468,7 +485,7 @@ Public Class PublicSale
 
     Public Overrides ReadOnly Property sAction As String
         Get
-            Return String.Format("{0} in cambio di {1} {2}", Me.transferObject.description, sCoins, sMessage)
+            Return String.Format("{0} in cambio di {1}", Me.transferObject.description, sCoins)
         End Get
     End Property
 
@@ -502,7 +519,7 @@ Public Class PrivateTransfer
 
     Public Overrides ReadOnly Property sAction As String
         Get
-            Return String.Format("trasferimenti privati {0}", sMessage)
+            Return String.Format("trasferimenti privati")
         End Get
     End Property
 
@@ -522,8 +539,11 @@ Public Class PrivateTransfer
 
     Public Overrides Function plainText(Optional type As String = "") As String
         Dim t As New StringBuilder(100)
+        t.Append(MyBase.plainText)
+
         Try
             t.AppendLine("Beni o servizi traferiti:")
+            t.Append(hline)
             t.Append(Me.privateBlock.transactions.plainText("elements_no_coins"))
 
         Catch ex As Exception
@@ -556,23 +576,31 @@ Public Class PrivateCompensation
                 t.Append("e altri ")
             End If
             t.Append("trasferimenti privati")
-
-            If Trim(Me.message) <> "" Then
-                t.AppendFormat(" ({0})", message)
-            End If
             Return t.ToString
         End Get
     End Property
 
     Public Overrides Function plainText(Optional type As String = "") As String
         Dim t As New StringBuilder(100)
+
+        t.Append(MyBase.plainText(type))
+
         Try
-            t.AppendLine("elementi compensati:")
-            t.Append(Me.privateBlock.transactions.plainText("compensations"))
             t.AppendLine()
-            t.AppendLine("elementi utilizzati per compensare:")
+            t.AppendLine(hline)
+            t.AppendLine("DETTAGLI PRIVATI")
+            t.AppendLine(hline)
+            t.AppendLine()
+            t.AppendLine("Beni o servizi tasferiti:")
+            t.AppendLine(hline)
             t.Append(Me.privateBlock.transactions.plainText("elements"))
             t.AppendLine()
+            t.AppendLine()
+            t.AppendLine("Per compensare:")
+            t.AppendLine(hline)
+            t.Append(Me.privateBlock.transactions.plainText("compensations"))
+            t.AppendLine()
+
         Catch ex As Exception
             t.Append("si è verificato un errore rendendo l'elemento in TEXT")
         End Try
@@ -609,7 +637,7 @@ Public Class PrivateSale
 
     Public Overrides ReadOnly Property sAction As String
         Get
-            Return String.Format("trasferimenti privati in cambio di {0} {1}", sCoins, sMessage)
+            Return String.Format("trasferimenti privati in cambio di {0} coins", sCoins)
         End Get
     End Property
 
@@ -628,4 +656,24 @@ Public Class PrivateSale
     End Function
 
 
+    Public Overrides Function plainText(Optional type As String = "") As String
+        Dim t As New StringBuilder(100)
+        t.Append(MyBase.plainText)
+
+        Try
+            t.AppendLine()
+            t.AppendLine(hline)
+            t.AppendLine("DETTAGLI PRIVATI")
+            t.AppendLine(hline)
+            t.AppendLine()
+            t.AppendLine("Beni o servizi tasferiti:")
+            t.AppendLine(hline)
+            t.Append(Me.privateBlock.transactions.plainText("elements"))
+            t.AppendLine()
+
+        Catch ex As Exception
+            t.Append("si è verificato un errore rendendo l'elemento in TEXT")
+        End Try
+        Return t.ToString
+    End Function
 End Class

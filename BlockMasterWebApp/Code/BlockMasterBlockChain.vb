@@ -196,6 +196,7 @@ Public Class BlockMasterBlockChain
 
                 If TypeOf ttp.transaction Is CoinCreation Then
                     check(ttp.transaction.sFrom.isAuthority, "Only BlockChain Authorities can create coins")
+                    check(ttp.transaction.sTo.isPublic, "Only can receive coins from BlockChain Authorities")
                 Else
                     If ttp.transaction.isSale Then
                         check(ttp.transaction.sTo.coinBalance.balance >= ttp.transaction.coinAmount, String.Format("{0}: not enough coins to pay", ttp.transaction.sTo.name))
@@ -204,6 +205,8 @@ Public Class BlockMasterBlockChain
                     End If
 
                     If ttp.transaction.isPrivate Then
+                        check(Not (ttp.transaction.sTo.isPublic Or ttp.transaction.sFrom.isPublic), "Public subjects cannot be engaged in private transfers")
+
                         Dim pt As PrivateCoSignedTransferTransaction = ttp.transaction
                         ' verifichiamo che non si tratti di un tentativo di fare una transizione nuova con un blocco già usato in una transazione aggiunta in precedenza
                         check(Not da.existsPrivateBlock(pt.transferObject.description), String.Format("invalid private block!"))

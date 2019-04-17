@@ -46,11 +46,10 @@ Public Class TransferTransactionPackage
                 ensureBlockDecrypted()
                 Dim pc As PrivateCoSignedTransferTransaction = transaction
                 pc.privateBlock = Me.privateBlock
-                t.Append(pc.plainText(type))
-            Else
-
-                t.Append(transaction.sAction)
             End If
+
+            t.Append(transaction.plainText(type))
+
         End If
         Return t.ToString
     End Function
