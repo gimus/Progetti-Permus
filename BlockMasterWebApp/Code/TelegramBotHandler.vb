@@ -119,16 +119,13 @@ Public Class TelegramBotHandler
 
     Protected Sub sendTransferNotification(s As Subject, ttp As TransferTransactionPackage)
 
-        sendSubjectMessage(s, ttp.transaction.transferNotification)
+        sendSubjectMessage(s, ttp.transaction.transferNotification(ttp.transaction.toSubject = s.id))
 
         If s.profile.asProtected.hasCertificate And ttp.isPrivate Then
             Try
                 ttp.ensureBlockDecrypted(s.profile.asProtected.X509Certificate2)
                 If ttp.privateBlock IsNot Nothing Then
                     ttp.privateBlock.transactions.correlateCompensations(BlockMasterBlockChain.M)
-
-
-
                     sendSubjectMessage(s, ttp.plainText())
                 End If
             Catch ex As Exception
