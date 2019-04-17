@@ -19,13 +19,6 @@ Class UserDetailPage
 
     Private Sub FromTransactionControl_DataContextChanged(sender As Object, e As DependencyPropertyChangedEventArgs) Handles Me.DataContextChanged
         If user IsNot Nothing Then
-            If user.isAuthority Then
-                authorityImage.Visibility = Visibility.Visible
-                userImage.Visibility = Visibility.Hidden
-            Else
-                authorityImage.Visibility = Visibility.Hidden
-                userImage.Visibility = Visibility.Visible
-            End If
             Application.C.extendedInfoToRequest = "UserInfo|" & user.id
         End If
     End Sub

@@ -87,7 +87,11 @@ Class MainWindow
                 If s.isAuthority Then
                     e.Add(New XAttribute("image", "bank.png"))
                 Else
-                    e.Add(New XAttribute("image", "user.png"))
+                    If s.isPublic Then
+                        e.Add(New XAttribute("image", "public.png"))
+                    Else
+                        e.Add(New XAttribute("image", "user.png"))
+                    End If
                 End If
                 eep.Add(e)
             End If

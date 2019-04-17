@@ -19,8 +19,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Image Name="userImage" Margin="2" Source="/PermusClient;component/Images/user.png" ></Image>
-            <Image Name="authorityImage" Margin="2" Source="/PermusClient;component/Images/bank.png" ></Image>
+            <Image Name="userImage" Margin="2" Source="{Binding Converter={StaticResource SubjectImageConverter}}" ></Image>
             <StackPanel Grid.Column="1" Orientation="Vertical">
                 <TextBlock Margin="2" Text="{Binding name}" FontSize="22" FontWeight="Bold" ></TextBlock>
                 <TextBlock Margin="2" Text="{Binding distinguishedName}" FontSize="12"></TextBlock>

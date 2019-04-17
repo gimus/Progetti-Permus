@@ -7,6 +7,7 @@
     <local:UtcToLocalTimeConverter x:Key="UtcToLocalTimeConverter" />
     <local:TransferItemImageConverter x:Key="TransferItemImageConverter" />
     <local:TransferItemBackgroundColorConverter x:Key="TransferItemBackgroundColorConverter" />
+    <local:SubjectImageConverter x:Key="SubjectImageConverter" />
 
     <!--<CollectionViewSource Source="{Binding Source={x:Static Fonts.SystemFontFamilies}}" x:Key="familyCollection" />-->
 

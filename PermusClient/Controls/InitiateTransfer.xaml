@@ -38,9 +38,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border  Background="LightGray">
-                <TextBlock Text="Select type: " FontWeight="Bold" Margin="3"></TextBlock>
+                <TextBlock Text="Select Transfer type: " FontWeight="Bold" Margin="3"></TextBlock>
             </Border>
             <ComboBox FontSize="14" FontWeight="Medium" Name="cbInputMode" SelectedIndex="0" Grid.Column="1" >
+                <ComboBoxItem  Name="ciNoOperation" ></ComboBoxItem>
+                <ComboBoxItem  Name="ciCoinCreation" >Coin creation and transfer</ComboBoxItem>
                 <ComboBoxItem  Name="ciCoinTransfer" >Coin transfer</ComboBoxItem>
                 <ComboBoxItem  Name="ciPublicTransfer" >Public transfer</ComboBoxItem>
                 <ComboBoxItem  Name="ciPublicSale" >Public Sale</ComboBoxItem>

@@ -7,7 +7,7 @@ Public Class InitiateTransfer
     Protected WithEvents feedbackPage As TransferFeedbackPage
 
     Protected ttp As TransferTransactionPackage
-    Protected interfaceValid As Boolean = False
+    '    Protected interfaceValid As Boolean = False
     Protected opMode As OpModeEnum = OpModeEnum.input
     Protected lastFrameName As String = ""
     Protected transferIdToBeAccepted As String = ""
@@ -37,7 +37,7 @@ Public Class InitiateTransfer
     End Property
 
     Private Sub ItemDetail_DataContextChanged(sender As Object, e As DependencyPropertyChangedEventArgs) Handles Me.DataContextChanged
-        If Not interfaceValid Then setupInterface()
+        setupInterface()
         CheckPendingTransfers()
 
         If opMode = OpModeEnum.input Then
@@ -137,6 +137,8 @@ Public Class InitiateTransfer
             lastFrameName = frameName
 
             Select Case frameName
+                Case "ciNoOperation"
+                    transferInput = New NoOperationPage
                 Case "ciCoinCreation"
                     transferInput = New CoinCreationPage With {.coinCreation = New CoinCreation With {.fromSubject = C.currentUser.id, .toSubject = subject.id}}
 
@@ -164,16 +166,29 @@ Public Class InitiateTransfer
     End Sub
 
     Protected Sub setupInterface()
-        interfaceValid = True
-        ' il nodo master può fare solo un limitato set di operazioni
+
+        For Each cbi As ComboBoxItem In cbInputMode.Items
+            cbi.Visibility = Visibility.Visible
+        Next
+        ciCoinCreation.Visibility = Visibility.Collapsed
+
         If C.currentUser.isAuthority Then
-            Me.cbInputMode.Items.Clear()
-            Dim cbi As New ComboBoxItem
-            cbi.Name = "ciCoinCreation"
-            cbi.Content = "Coin creation and transfer"
-            Me.cbInputMode.Items.Add(cbi)
-            Me.cbInputMode.SelectedIndex = 0
+            For Each cbi As ComboBoxItem In cbInputMode.Items
+                cbi.Visibility = Visibility.Collapsed
+            Next
+            If Me.subject.isPublic Then
+                ciCoinCreation.Visibility = Visibility.Visible
+            End If
+
+        Else
+            If C.currentUser.isPublic Or subject.isPublic Then
+                ciPrivateSale.Visibility = Visibility.Collapsed
+                ciPrivateTransfer.Visibility = Visibility.Collapsed
+                ciPrivateCompensation.Visibility = Visibility.Collapsed
+            End If
         End If
+        cbInputMode.SelectedIndex = -1
+        cbInputMode.SelectedIndex = 0
     End Sub
 
     Protected Sub initiateTransfer(ttp As TransferTransactionPackage)

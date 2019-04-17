@@ -168,6 +168,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Assets\Converters\TransferItemBackgroundColorConverter.vb" />
+    <Compile Include="Assets\Converters\SubjectImageConverter.vb" />
     <Compile Include="Assets\Converters\TransferItemImageConverter.vb" />
     <Compile Include="Controls\DispositiviControl.xaml.vb">
       <DependentUpon>DispositiviControl.xaml</DependentUpon>
@@ -200,6 +201,9 @@
     </Compile>
     <Compile Include="Controls\BlocksBrowser.xaml.vb">
       <DependentUpon>BlocksBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransferInputs\NoOperationPage.xaml.vb">
+      <DependentUpon>NoOperationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TransferInputs\PrivateTransferPage.xaml.vb">
       <DependentUpon>PrivateTransferPage.xaml</DependentUpon>
@@ -303,6 +307,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\BlocksBrowser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TransferInputs\NoOperationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -549,6 +557,9 @@
       <Project>{16eca160-1257-4192-bc00-7f2c647b709e}</Project>
       <Name>Permus</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\public.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
