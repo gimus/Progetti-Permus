@@ -109,7 +109,7 @@ End Class
 Public Class BlockCache
     Inherits Queue(Of Block)
     Protected max As Integer
-    Public Sub New(maxSize As Integer)
+    Public Sub New(Optional maxSize As Integer = 3)
         max = maxSize
     End Sub
 

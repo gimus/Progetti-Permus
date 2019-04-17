@@ -123,6 +123,7 @@ Public Class TransferCompensation
     Implements INotifyPropertyChanged
     Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
+    Public Property blockId As Long
     Public Property transferId As String
     Public Property percentCompensated As Double
 
@@ -145,7 +146,7 @@ Public Class TransferCompensation
         Me.transferId = relatedTransferTransaction.transferId
         Me.percentCompensated = tt.compensation
         Me.newPercentCompensated = tt.compensation
-
+        Me.blockId = tt.blockSerial
         Me.description = tt.sAction
         Me.sComp = tt.sComp
     End Sub
@@ -202,6 +203,7 @@ Public Class TransferCompensation
 
     Public Overrides Function xml() As XElement
         Dim e As XElement = MyBase.xml()
+        e.Add(New XElement("blockId", Me.blockId))
         e.Add(New XElement("transferId", Me.transferId))
         e.Add(New XElement("percentCompensated", Me.percentCompensated.ToString))
         Return e
@@ -210,6 +212,11 @@ Public Class TransferCompensation
     Public Overrides Sub fromXml(e As XElement)
         MyBase.fromXml(e)
         With e
+            Try
+                blockId = .Element("blockId").Value
+            Catch ex As Exception
+                blockId = 0
+            End Try
             transferId = .Element("transferId").Value
             percentCompensated = .Element("percentCompensated").Value
         End With

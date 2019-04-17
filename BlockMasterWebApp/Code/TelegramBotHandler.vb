@@ -125,6 +125,10 @@ Public Class TelegramBotHandler
             Try
                 ttp.ensureBlockDecrypted(s.profile.asProtected.X509Certificate2)
                 If ttp.privateBlock IsNot Nothing Then
+                    ttp.privateBlock.transactions.correlateCompensations(BlockMasterBlockChain.M)
+
+
+
                     sendSubjectMessage(s, ttp.plainText())
                 End If
             Catch ex As Exception

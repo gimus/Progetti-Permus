@@ -307,6 +307,10 @@ Public Class TransactionsList
         Return t.ToString
     End Function
 
+    Public Function getTransferTransaction(transferId As String) As TransferTransaction
+        Return Me.Where(Function(x) x.transactionType = TransactionTypeEnum.Transfer).Where(Function(y As TransferTransaction) y.transferId = transferId).FirstOrDefault
+    End Function
+
     Public Function getTransferTransactions(subjectId As String) As List(Of TransferTransaction)
         Dim ret As New List(Of TransferTransaction)
         For Each t As Transaction In Me
@@ -326,6 +330,31 @@ Public Class TransactionsList
         For Each tc As TransferCompensation In Me.getTransferCompensations()
             tt = C.userTransferTransactions(tc.referencedItemId)
             tc.relatedTransferTransaction = tt
+        Next
+    End Sub
+
+    Public Sub correlateCompensations(C As BlockChain)
+        Dim tt As TransferTransaction
+        Dim bc As New BlockCache(1000)
+        Dim b As Block
+
+        For Each tc As TransferCompensation In Me.getTransferCompensations()
+            If tc.blockId > 0 Then
+                b = bc.getBlock(tc.blockId)
+
+                If b Is Nothing Then
+                    b = C.obtainBlock(tc.blockId)
+                    If b IsNot Nothing Then
+                        bc.Add(b)
+                    End If
+                End If
+
+                If b IsNot Nothing Then
+                    tt = b.transactions.getTransferTransaction(tc.referencedItemId)
+                    tc.relatedTransferTransaction = tt
+                End If
+
+            End If
         Next
     End Sub
 

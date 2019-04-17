@@ -200,7 +200,7 @@ Public Class ClientBlockChain
         Return True
     End Function
 
-    Protected Overrides Function obtainBlock(serial As Long, Optional forceLoadFromBlockMaster As Boolean = False, Optional fireNotifyEvents As Boolean = True) As Block
+    Protected Friend Overrides Function obtainBlock(serial As Long, Optional forceLoadFromBlockMaster As Boolean = False, Optional fireNotifyEvents As Boolean = True) As Block
         Dim b As Block = Nothing
 
         ' proviamo ad ottenere il blocco dalla copia locale della blockchain che per definizione è sempre "trusted 

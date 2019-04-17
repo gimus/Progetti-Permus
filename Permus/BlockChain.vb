@@ -70,7 +70,7 @@ Public Class BlockChain
         End If
     End Function
 
-    Protected Overridable Function obtainBlock(serial As Long, Optional forceLoadFromBlockMaster As Boolean = False, Optional fireNotifyEvents As Boolean = True) As Block
+    Protected Friend Overridable Function obtainBlock(serial As Long, Optional forceLoadFromBlockMaster As Boolean = False, Optional fireNotifyEvents As Boolean = True) As Block
         ' implementation depends on the type of derived object
         Return Nothing
     End Function

@@ -103,7 +103,7 @@ Public Class BlockMasterBlockChain
         Return da.saveBlock(b)
     End Function
 
-    Protected Overrides Function obtainBlock(serial As Long, Optional dummyAndIninfluentParameter As Boolean = False, Optional fireNotifyEvents As Boolean = True) As Block
+    Protected Overrides Function obtainBlock(serial As Long, Optional forceLoadFromBlockMaster As Boolean = False, Optional fireNotifyEvents As Boolean = True) As Block
         Return readBlockFromDB(serial)
     End Function
 
@@ -120,11 +120,11 @@ Public Class BlockMasterBlockChain
             Dim oldBlock As Block = currentBlock
             ' creiamo un nuovo Blocco
             currentBlock = createNextBlock(oldBlock)
-
         End If
 
         ' salviamolo immediatamente
         saveBlockToDB(currentBlock)
+
         updateSystemInfo()
     End Sub
 
@@ -155,7 +155,6 @@ Public Class BlockMasterBlockChain
                 App.H.AddSubject(subject)
             End If
         End If
-
     End Sub
 
     Public Function enrollCertificate(cer As X509Certificate2) As Block
@@ -195,7 +194,6 @@ Public Class BlockMasterBlockChain
             Case "TransferTransactionInit"
                 ttp.transaction.loadSubjects(Me)
 
-
                 If TypeOf ttp.transaction Is CoinCreation Then
                     check(ttp.transaction.sFrom.isAuthority, "Only BlockChain Authorities can create coins")
                 Else
@@ -215,7 +213,6 @@ Public Class BlockMasterBlockChain
                             Dim ptx As PrivateCoSignedTransferTransaction = tx.transaction
                             check(ptx.transferObject.description <> pt.transferObject.description, String.Format("invalid private block!"))
                         Next
-
                     End If
                 End If
 
@@ -234,12 +231,6 @@ Public Class BlockMasterBlockChain
 
                 ' approfittiamo per fare un po' di pulizia
                 executeHouseKeeping()
-
-
-            'Case "TransferTransactionInfo"
-            '    Dim transferId As String = utility.getChildElementValue(command, "transferId")
-            '    ttp = pendingTransferTransactions.Values.Where(Function(x) (x.transaction.fromSubject = requester.id Or x.transaction.toSubject = requester.id) And (x.transaction.isPending Or x.transaction.transferId = transferId)).FirstOrDefault
-
 
             Case "TransferTransactionPropose"
                 Dim oldttp = pendingTransferTransactions(ttp.transaction.transferId)
@@ -294,7 +285,6 @@ Public Class BlockMasterBlockChain
                 ttp.transaction.updateState()
 
                 App.H.notifySubjectsTransferTransaction(ttp)
-
         End Select
 
         Return ttp
