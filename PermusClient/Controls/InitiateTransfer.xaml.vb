@@ -166,29 +166,31 @@ Public Class InitiateTransfer
     End Sub
 
     Protected Sub setupInterface()
-
-        For Each cbi As ComboBoxItem In cbInputMode.Items
-            cbi.Visibility = Visibility.Visible
-        Next
-        ciCoinCreation.Visibility = Visibility.Collapsed
-
-        If C.currentUser.isAuthority Then
+        If Not subject Is Nothing Then
             For Each cbi As ComboBoxItem In cbInputMode.Items
-                cbi.Visibility = Visibility.Collapsed
+                cbi.Visibility = Visibility.Visible
             Next
-            If Me.subject.isPublic Then
-                ciCoinCreation.Visibility = Visibility.Visible
-            End If
+            ciCoinCreation.Visibility = Visibility.Collapsed
 
-        Else
-            If C.currentUser.isPublic Or subject.isPublic Then
-                ciPrivateSale.Visibility = Visibility.Collapsed
-                ciPrivateTransfer.Visibility = Visibility.Collapsed
-                ciPrivateCompensation.Visibility = Visibility.Collapsed
+            If C.currentUser.isAuthority Then
+                For Each cbi As ComboBoxItem In cbInputMode.Items
+                    cbi.Visibility = Visibility.Collapsed
+                Next
+                If Me.subject.isPublic Then
+                    ciCoinCreation.Visibility = Visibility.Visible
+                End If
+
+            Else
+                If C.currentUser.isPublic Or subject.isPublic Then
+                    ciPrivateSale.Visibility = Visibility.Collapsed
+                    ciPrivateTransfer.Visibility = Visibility.Collapsed
+                    ciPrivateCompensation.Visibility = Visibility.Collapsed
+                End If
             End If
+            cbInputMode.SelectedIndex = -1
+            cbInputMode.SelectedIndex = 0
         End If
-        cbInputMode.SelectedIndex = -1
-        cbInputMode.SelectedIndex = 0
+
     End Sub
 
     Protected Sub initiateTransfer(ttp As TransferTransactionPackage)

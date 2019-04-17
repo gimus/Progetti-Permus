@@ -89,4 +89,9 @@ Public Class transferTransactionDetail
             End If
         End If
     End Sub
+
+    Private Sub wbSource_LoadCompleted(sender As Object, e As NavigationEventArgs) Handles wbSource.LoadCompleted
+        wbSource.Document.charset = "utf-8"
+        wbSource.Refresh()
+    End Sub
 End Class
