@@ -127,7 +127,7 @@ Public MustInherit Class TransferTransaction
                 If coinAmount = 1 Then
                     Return "1 Coin"
                 Else
-                    Return String.Format("{0} Coins", Me.coinAmount.ToString("#.#"))
+                    Return String.Format("{0} Coins", Me.coinAmount.ToString("#.00"))
                 End If
             Else
                 Return ""
@@ -542,9 +542,15 @@ Public Class PrivateTransfer
         t.Append(MyBase.plainText)
 
         Try
-            t.AppendLine("Beni o servizi traferiti:")
-            t.Append(hline)
-            t.Append(Me.privateBlock.transactions.plainText("elements_no_coins"))
+            t.AppendLine()
+            t.AppendLine(hline)
+            t.AppendLine("DETTAGLI PRIVATI")
+            t.AppendLine(hline)
+            t.AppendLine()
+            t.AppendLine("   coins beni o servizi tasferiti:")
+            t.AppendLine(hline)
+            t.Append(Me.privateBlock.transactions.plainText("elements"))
+            t.AppendLine()
 
         Catch ex As Exception
             t.Append("si è verificato un errore rendendo l'elemento in TEXT")
@@ -568,12 +574,7 @@ Public Class PrivateCompensation
             Dim t As New StringBuilder(100)
             t.Append("Compensazione con ")
             If coinAmount > 0 Then
-                If coinAmount = 1 Then
-                    t.Append("1 Coin ")
-                Else
-                    t.AppendFormat("{0} Coins ", Me.coinAmount.ToString("#.#"))
-                End If
-                t.Append("e altri ")
+                t.AppendFormat("{0} e altri ", Me.sCoins)
             End If
             t.Append("trasferimenti privati")
             Return t.ToString
@@ -591,7 +592,7 @@ Public Class PrivateCompensation
             t.AppendLine("DETTAGLI PRIVATI")
             t.AppendLine(hline)
             t.AppendLine()
-            t.AppendLine("Beni o servizi tasferiti:")
+            t.AppendLine("   coins beni o servizi tasferiti:")
             t.AppendLine(hline)
             t.Append(Me.privateBlock.transactions.plainText("elements"))
             t.AppendLine()
@@ -637,7 +638,7 @@ Public Class PrivateSale
 
     Public Overrides ReadOnly Property sAction As String
         Get
-            Return String.Format("trasferimenti privati in cambio di {0} coins", sCoins)
+            Return String.Format("trasferimenti privati in cambio di {0}", sCoins)
         End Get
     End Property
 
@@ -666,10 +667,14 @@ Public Class PrivateSale
             t.AppendLine("DETTAGLI PRIVATI")
             t.AppendLine(hline)
             t.AppendLine()
-            t.AppendLine("Beni o servizi tasferiti:")
+            t.AppendLine("   costo Beni o servizi tasferiti:")
             t.AppendLine(hline)
             t.Append(Me.privateBlock.transactions.plainText("elements"))
+            t.AppendLine(hline)
             t.AppendLine()
+            t.AppendFormat("costo totale: {0} coins", Me.coinAmount.ToString("#.00"))
+            t.AppendLine()
+
 
         Catch ex As Exception
             t.Append("si è verificato un errore rendendo l'elemento in TEXT")

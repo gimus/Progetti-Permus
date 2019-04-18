@@ -63,6 +63,9 @@
                     <WebBrowser Name="wbSource" Grid.Row="1" Grid.ColumnSpan="2" ></WebBrowser>
                 </Grid>
             </TabItem>
+            <TabItem Name="tabCompensation" Header="Compensazione">
+            </TabItem>
+
         </TabControl>
 
 

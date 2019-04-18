@@ -87,7 +87,7 @@ Public Class TransferElement
         Dim t As New StringBuilder(1000)
         Select Case type
             Case "private_table_row"
-                t.AppendFormat("- {0} {1}", Me.transferObject.description, Me.transferObject.cost.ToString("#.##"))
+                t.AppendFormat("- {1} {0}", Me.transferObject.description, Right("     " & Me.transferObject.cost.ToString("0.00"), 6))
                 t.AppendLine()
         End Select
         Return t.ToString

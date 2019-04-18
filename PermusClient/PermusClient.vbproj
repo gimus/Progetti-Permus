@@ -30,7 +30,7 @@
     <ProductName>Permus Windows Client Test</ProductName>
     <PublisherName>gimus.com</PublisherName>
     <SuiteName>Permus</SuiteName>
-    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

@@ -5,11 +5,20 @@ Public Class transferTransactionDetail
     Inherits commandableControl
     Dim tmpXmlName As String = IO.Path.Combine(IO.Path.GetTempPath(), "tmp.xml")
     Dim tmpTxtName As String = IO.Path.Combine(IO.Path.GetTempPath(), "tmp.txt")
+    Dim ttdComp As transferTransactionDetail
 
     Public Sub New()
         InitializeComponent()
-        Me.DataContext = Nothing
+        init(0)
+    End Sub
 
+    Public Sub New(Optional nl As Integer = 0)
+        InitializeComponent()
+        init(nl)
+    End Sub
+
+    Protected Sub init(nl As Integer)
+        Me.DataContext = Nothing
     End Sub
 
     Public Property TransferTransaction As TransferTransaction
@@ -30,17 +39,24 @@ Public Class transferTransactionDetail
 
         Dim pi As Integer = cbXMLMode.SelectedIndex
         cbXMLMode.SelectedIndex = -1
-        cbXMLMode.SelectedIndex = pi
+        cbXMLMode.SelectedIndex = 0
+        If ttdComp IsNot Nothing Then
+            If TransferTransaction.isCompensation Then
+
+            Else
+                Dim o As Object = TransferTransaction.compensations
+
+            End If
+
+
+
+        End If
     End Sub
 
 
     Public Overrides Sub newCommand()
         Select Case cmd
         End Select
-    End Sub
-
-    Private Sub TC_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
-
     End Sub
 
     Private Sub cbXMLMode_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbXMLMode.SelectionChanged
@@ -93,5 +109,13 @@ Public Class transferTransactionDetail
     Private Sub wbSource_LoadCompleted(sender As Object, e As NavigationEventArgs) Handles wbSource.LoadCompleted
         wbSource.Document.charset = "utf-8"
         wbSource.Refresh()
+    End Sub
+
+    Private Sub TC_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles TC.SelectionChanged
+        If e.AddedItems.Count > 0 Then
+            Dim ti As TabItem = e.AddedItems(0)
+            If ti.Name = "tabCompensation" Then
+            End If
+        End If
     End Sub
 End Class
