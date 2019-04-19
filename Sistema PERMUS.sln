@@ -9,6 +9,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PermusClient", "PermusClien
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BlockMasterWebApp", "BlockMasterWebApp\BlockMasterWebApp.vbproj", "{3C0AA4D5-89FF-4E20-9576-C814450DC163}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GimusBlockChain", "GimusBlockChain\GimusBlockChain.vbproj", "{D681C407-2124-4C46-B2BA-DEE57F5761E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{3C0AA4D5-89FF-4E20-9576-C814450DC163}.Release|x64.Build.0 = Release|x64
 		{3C0AA4D5-89FF-4E20-9576-C814450DC163}.Release|x86.ActiveCfg = Release|x86
 		{3C0AA4D5-89FF-4E20-9576-C814450DC163}.Release|x86.Build.0 = Release|x86
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Debug|x64.Build.0 = Debug|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Debug|x86.Build.0 = Debug|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Release|x64.ActiveCfg = Release|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Release|x64.Build.0 = Release|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Release|x86.ActiveCfg = Release|Any CPU
+		{D681C407-2124-4C46-B2BA-DEE57F5761E2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
