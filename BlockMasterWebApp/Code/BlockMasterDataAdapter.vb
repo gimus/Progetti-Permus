@@ -3,7 +3,7 @@ Imports ServiziDB
 Imports Permus
 
 Public Class BlockMasterDataAdapter
-    Protected db As ServiziDB.SERVIZI_DB
+    Protected Friend db As ServiziDB.SERVIZI_DB
 
     Public Sub New(localDbConnectionString As String)
         db = New SERVIZI_DB

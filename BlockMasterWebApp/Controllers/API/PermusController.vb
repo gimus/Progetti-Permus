@@ -215,6 +215,20 @@ Namespace Controllers
                                 Return Nothing
                             End Try
 
+                        Case "modifica_attributo"
+                            Try
+                                Dim dt As DataTable = BlockMasterBlockChain.M.da.ModificaAttributoProfilo(subjRequester.id, xcmd.Element("P1").Value, xcmd.Element("P2").Value)
+                                Dim subj As Subject = BlockMasterBlockChain.M.subjects.getElementById(subjRequester.id)
+                                resultOk = BlockMasterBlockChain.M.da.db.LastActionSuccess
+
+                                If subj IsNot Nothing And resultOk Then
+                                    subj.profile = Factory.leggiProtectedSubjectProfile(dt.Rows(0))
+                                End If
+                            Catch ex As Exception
+                                Return Nothing
+                            End Try
+
+
                         Case Else
                             resultOk = False
                     End Select
