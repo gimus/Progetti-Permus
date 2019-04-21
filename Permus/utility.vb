@@ -83,21 +83,28 @@ Public Class utility
     End Function
 
     Public Shared Function computeDigitalSignatureAndGenerateP7M(data() As Byte, cer As X509Certificate2, Optional timestamp As Long = 0) As Byte()
-        Dim scms As New SignedCms(New ContentInfo(data), False)
-        '        Dim signer As New CmsSigner(utility.getCertificateFromStoreByCertificateHash(cer.Thumbprint))
+        If cer IsNot Nothing Then
+            Dim scms As New SignedCms(New ContentInfo(data), False)
+            '        Dim signer As New CmsSigner(utility.getCertificateFromStoreByCertificateHash(cer.Thumbprint))
 
-        If cer.PrivateKey Is Nothing Then
-            cer = utility.getCertificateFromStoreByCertificateHash(cer.Thumbprint)
+            If cer.PrivateKey Is Nothing Then
+                cer = utility.getCertificateFromStoreByCertificateHash(cer.Thumbprint)
+            End If
+
+            Dim signer As New CmsSigner(cer)
+
+            If timestamp > 0 Then
+                signer.SignedAttributes.Add(New Pkcs9SigningTime(utility.dateTimeFromUnixTime(timestamp)))
+            End If
+            Try
+                scms.ComputeSignature(signer, True)
+                Return scms.Encode()
+            Catch ex As Exception
+                Return Nothing
+            End Try
+        Else
+            Return Nothing
         End If
-
-        Dim signer As New CmsSigner(cer)
-
-        If timestamp > 0 Then
-            signer.SignedAttributes.Add(New Pkcs9SigningTime(utility.dateTimeFromUnixTime(timestamp)))
-        End If
-
-        scms.ComputeSignature(signer, True)
-        Return scms.Encode()
     End Function
 
     Public Shared Function verifyDigitalSignatureSHA1(cer As X509Certificate2, s As String, signature As Byte()) As Boolean

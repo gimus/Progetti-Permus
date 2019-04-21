@@ -117,14 +117,19 @@ Class MainWindow
     End Sub
 
     Protected Sub newUserCertificateSelected(subj As Subject)
-        Dim si As SystemInfo = C.api.getCheckIn(C.prepareSignedCommand(subj.x509Certificate)).Result
+        Dim si As SystemInfo = Nothing
+        Try
+            si = C.api.getCheckIn(C.prepareSignedCommand(subj.x509Certificate)).Result
 
-        If si Is Nothing Then
-            If proposeNewUserEnrollment(subj) Then
-                ConnectToCurrentChain()
-                si = C.api.getCheckIn(C.prepareSignedCommand(subj.x509Certificate)).Result
+            If si Is Nothing Then
+                If proposeNewUserEnrollment(subj) Then
+                    ConnectToCurrentChain()
+                    si = C.api.getCheckIn(C.prepareSignedCommand(subj.x509Certificate)).Result
+                End If
             End If
-        End If
+        Catch ex As Exception
+
+        End Try
 
         If si IsNot Nothing Then
             subj.token = si.requesterInfo.token
@@ -153,6 +158,7 @@ Class MainWindow
             My.Settings.Save()
             Me.Close()
         End If
+
 
     End Sub
 

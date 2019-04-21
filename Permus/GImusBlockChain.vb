@@ -20,7 +20,7 @@ Public Enum BlockChainNotifyEventType
     BlockChainIsInvalid = 99
 End Enum
 
-Public Class BlockChain
+Public Class GimusBlockChain
     Protected Friend currentBlock As Block = New Block
     Protected _blockChainValid As Boolean
     Protected Friend _subjects As New Subjects
@@ -101,7 +101,7 @@ Public Class BlockChain
         End If
     End Sub
 
-    Protected Sub Reset()
+    Protected Overridable Sub Reset()
         _subjects.Clear()
         currentBlock = New Block
     End Sub

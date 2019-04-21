@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlockChain.vb" />
-    <Compile Include="Class1.vb" />
     <Compile Include="Models\Block.vb" />
     <Compile Include="Models\PermusObject.vb" />
     <Compile Include="Models\Signature.vb" />
