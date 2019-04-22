@@ -77,10 +77,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>9603192DF4AA0143DA01A6D9C3D0C732E1022816</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>85CF2B2BBE18E1CF5BB4D4FD1042B300F2FF90C2</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>test_codesign_cert.pfx</ManifestKeyFile>
+    <ManifestKeyFile>test_code_sign.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>Internet</TargetZone>
