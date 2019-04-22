@@ -24,7 +24,7 @@ Public Class InboundTransfersBrowser
     Public Overrides Sub newCommand()
         Select Case cmd
             Case "TICK"
-                If C.userHasIncomingPendingTransfers Then
+                If C.userHasIncomingPendingTransfers Or Me.LB.Items.Count > 0 Then
                     CheckPendingTransfers()
                 Else
                     Debug.Print("no pending transfers ....")
@@ -87,6 +87,8 @@ Public Class InboundTransfersBrowser
         If LB.SelectedIndex = -1 Then
             If ocpt.Count > 0 Then
                 LB.SelectedIndex = 0
+            Else
+                PendingTransferDetail.transferTransactionPackage = Nothing
             End If
         End If
     End Sub

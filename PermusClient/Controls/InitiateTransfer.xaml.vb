@@ -80,8 +80,9 @@ Public Class InitiateTransfer
                     Catch ex As Exception
 
                     End Try
-
                 End If
+                CheckPendingTransfers()
+
         End Select
     End Sub
 
