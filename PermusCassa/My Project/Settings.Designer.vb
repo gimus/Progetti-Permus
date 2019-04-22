@@ -64,6 +64,42 @@ Partial Friend NotInheritable Class MySettings
             Me("BlockMasterPollingTimerIntervalSeconds") = value
         End Set
     End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("http://www.pardesca.it:4080/permus/")>  _
+    Public Property serverUrl() As String
+        Get
+            Return CType(Me("serverUrl"),String)
+        End Get
+        Set
+            Me("serverUrl") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+    Public Property lastUserCertificate() As String
+        Get
+            Return CType(Me("lastUserCertificate"),String)
+        End Get
+        Set
+            Me("lastUserCertificate") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("*")>  _
+    Public Property WindowState() As String
+        Get
+            Return CType(Me("WindowState"),String)
+        End Get
+        Set
+            Me("WindowState") = value
+        End Set
+    End Property
 End Class
 
 Namespace My

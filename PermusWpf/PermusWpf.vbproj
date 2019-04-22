@@ -3,29 +3,26 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5AB6697F-72DA-4962-AB4A-7CCDF8836069}</ProjectGuid>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>PermusCassa</RootNamespace>
-    <AssemblyName>PermusCassa</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <RootNamespace>PermusWpf</RootNamespace>
+    <AssemblyName>PermusWpf</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MyType>Custom</MyType>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <ProjectGuid>{DF43591D-F8C1-4E1A-AD6C-6D9BEC236A19}</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <IncrementalBuild>true</IncrementalBuild>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>PermusCassa.xml</DocumentationFile>
+    <DocumentationFile>PermusWpf.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>false</DebugSymbols>
     <DefineDebug>false</DefineDebug>
@@ -33,7 +30,7 @@
     <IncrementalBuild>false</IncrementalBuild>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>PermusCassa.xml</DocumentationFile>
+    <DocumentationFile>PermusWpf.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -64,25 +61,6 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="Application.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="StatoWindow.vb" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="Application.xaml.vb">
-      <DependentUpon>Application.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.vb">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Import Include="System.Threading.Tasks" />
     <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
@@ -102,12 +80,14 @@
     <Import Include="System.Windows.Navigation" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Converters\SubjectImageConverter.vb" />
+    <Compile Include="Assets\Converters\SubjectNameFromIdConverter.vb" />
+    <Compile Include="Assets\Converters\TransferItemBackgroundColorConverter.vb" />
+    <Compile Include="Assets\Converters\TransferItemImageConverter.vb" />
+    <Compile Include="Assets\Converters\UtcToLocalTimeConverter.vb" />
+    <Compile Include="Controls\Dialogs.vb" />
     <Compile Include="My Project\AssemblyInfo.vb">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="My Project\MyExtensions\MyWpfExtension.vb">
-      <VBMyExtensionTemplateID>Microsoft.VisualBasic.WPF.MyExtension</VBMyExtensionTemplateID>
-      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -118,6 +98,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Windows\BlockChainEventNotificationWindow.xaml.vb">
+      <DependentUpon>BlockChainEventNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\BlockMasterConnectWindow.xaml.vb">
+      <DependentUpon>BlockMasterConnectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TimedWindow.xaml.vb">
+      <DependentUpon>TimedWindow.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -130,17 +119,77 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Page Include="Assets\converters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Templates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\BlockChainEventNotificationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\BlockMasterConnectWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\TimedWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PermusWpf\PermusWpf.vbproj">
-      <Project>{df43591d-f8c1-4e1a-ad6c-6d9bec236a19}</Project>
-      <Name>PermusWpf</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Permus\Permus.vbproj">
       <Project>{16eca160-1257-4192-bc00-7f2c647b709e}</Project>
       <Name>Permus</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\261.png" />
+    <Resource Include="Images\262.png" />
+    <Resource Include="Images\264.png" />
+    <Resource Include="Images\bank.png" />
+    <Resource Include="Images\bc.png" />
+    <Resource Include="Images\bc2.ico" />
+    <Resource Include="Images\block.png" />
+    <Resource Include="Images\blockchain.jpg" />
+    <Resource Include="Images\blocks.png" />
+    <Resource Include="Images\bullet.png" />
+    <Resource Include="Images\B_S_128x128.ico" />
+    <Resource Include="Images\clock.png" />
+    <Resource Include="Images\coin.png" />
+    <Resource Include="Images\comment.png" />
+    <Resource Include="Images\compensation.png" />
+    <Resource Include="Images\detach.png" />
+    <Resource Include="Images\DocAPI.ico" />
+    <Resource Include="Images\DocAPIAppSplash.png" />
+    <Resource Include="Images\folder_green.png" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\logout.png" />
+    <Resource Include="Images\membro.png" />
+    <Resource Include="Images\noImage.png" />
+    <Resource Include="Images\properties.png" />
+    <Resource Include="Images\public.png" />
+    <Resource Include="Images\report32.png" />
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\sezione64.png" />
+    <Resource Include="Images\star.png" />
+    <Resource Include="Images\toolbox.ico" />
+    <Resource Include="Images\transferElement.png" />
+    <Resource Include="Images\transferList.png" />
+    <Resource Include="Images\TransferTransactions\CoinTransfer.png" />
+    <Resource Include="Images\TransferTransactions\Compensation.png" />
+    <Resource Include="Images\TransferTransactions\PrivateSale.png" />
+    <Resource Include="Images\TransferTransactions\PrivateTransfer.png" />
+    <Resource Include="Images\TransferTransactions\PublicSale.png" />
+    <Resource Include="Images\user.png" />
+    <Resource Include="Images\world.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

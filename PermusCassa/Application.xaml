@@ -4,6 +4,21 @@
     xmlns:local="clr-namespace:PermusCassa"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PermusWpf;component/Assets/templates.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/PermusWpf;component/Assets/styles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/PermusWpf;component/Assets/converters.xaml"></ResourceDictionary>
+
+
+
+                <!--<ResourceDictionary Source="Assets/Styles.xaml" />
+                <ResourceDictionary Source="Assets/Converters.xaml" />
+                <ResourceDictionary Source="Assets/Templates.xaml" />-->
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
     </Application.Resources>
+
 </Application>
