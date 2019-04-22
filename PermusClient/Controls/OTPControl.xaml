@@ -23,6 +23,8 @@
             <Button Name="btnUploadPfx" Margin="6">upload .pfx file</Button>
             <Button Name="btnSetPin" Margin="6">set PIN</Button>
             <Button Name="btnTestPfx" Margin="6">Test Firma</Button>
+            <Separator Margin="8"></Separator>
+            <Button Name="btnSetRfId" Margin="6">set RFID</Button>
 
         </StackPanel>
         <Grid Name="Container" Grid.Column="1">

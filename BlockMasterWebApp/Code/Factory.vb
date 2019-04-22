@@ -77,6 +77,8 @@ Public Class Factory
             o.telegramId = SupportoDB.LeggiLong(dr("telegramId"))
             o.setotpSecretKey(leggiEDecripta(dr, "otpSecretKey"))
             o.hasTelegram = o.telegramId <> 0
+            o.setRfidSerial(SupportoDB.LeggiLong(dr("rfidSerial")))
+            o.hasRfid = SupportoDB.LeggiLong(dr("rfidSerial")) <> 0
 
             Try
                 Dim s As String = SupportoDB.LeggiString(dr("pfx"))
@@ -112,6 +114,8 @@ Public Class Factory
             o.hasPfx = s.Length > 100
             o.hasTelegram = SupportoDB.LeggiLong(dr("telegramId")) <> 0
             o.hasOtp = SupportoDB.LeggiString(dr("otpSecretKey")) <> ""
+            o.hasRfid = SupportoDB.LeggiLong(dr("rfidSerial")) <> 0
+
         End If
         Return o
     End Function

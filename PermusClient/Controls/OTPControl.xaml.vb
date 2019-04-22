@@ -58,8 +58,10 @@ Public Class OTPControl
 
     Private Sub BtnSetPin_Click(sender As Object, e As RoutedEventArgs) Handles btnSetPin.Click
         Dim pin As String = InputBox("pin di accesso al file .pfx contenente il certificato di firma")
-        If Application.C.ModifyCurrentUserProfile("pinPfx", pin) Then
-            Dialogs.notify("impostazione del pin di accesso al certificato di firma in formato .pfx avvenuto con successo!")
+        If pin <> "" Then
+            If Application.C.ModifyCurrentUserProfile("pinPfx", pin) Then
+                Dialogs.notify("impostazione del pin di accesso al certificato di firma in formato .pfx avvenuto con successo!")
+            End If
         End If
 
     End Sub
@@ -91,4 +93,21 @@ Public Class OTPControl
         End If
     End Sub
 
+    Private Sub BtnSetRfId_Click(sender As Object, e As RoutedEventArgs) Handles btnSetRfId.Click
+        Dim rfid As String = InputBox("Numero seriale del dispositivo RFID (in esadecimale)")
+        If rfid <> "" Then
+            Try
+                Dim sl As Long = Convert.ToInt64(rfid.ToUpper.Replace(":", ""), 16)
+
+                If Application.C.ModifyCurrentUserProfile("rfidSerial", sl) Then
+                    Dialogs.notify("impostazione numero seriale del dispositivo RFID avvenuto con successo!")
+                End If
+
+            Catch ex As Exception
+
+            End Try
+
+        End If
+
+    End Sub
 End Class

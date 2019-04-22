@@ -198,6 +198,12 @@ Public Class Subjects
             Return Nothing
         End If
     End Function
+    Public Function getElementByTelegramId(tid As String) As Subject
+        Return Me.Values.Where(Function(x) x.profile.asProtected.telegramId = tid).FirstOrDefault
+    End Function
+    Public Function getElementByRfId(rfid As String) As Subject
+        Return Me.Values.Where(Function(x) x.profile.asProtected.rfidSerial = rfid).FirstOrDefault
+    End Function
 
     Public Function getElementByX509Certificate(cer As X509Certificate2) As Subject
         Dim subj As Subject = Subject.fromX509Certificate(cer)
@@ -311,6 +317,7 @@ Public Class SubjectProfile
     Public hasTelegram As Boolean = False
     Public hasPfx As Boolean = False
     Public hasOtp As Boolean = False
+    Public hasRfid As Boolean = False
 
     Public ReadOnly Property asProtected As ProtectedSubjectProfile
         Get
@@ -325,6 +332,11 @@ Public Class ProtectedSubjectProfile
     Public pfx As Byte()
     Protected Friend pfxPin As String
     Protected Friend otpSecretKey As String
+    Protected Friend rfidSerial As Long
+
+    Public Sub setRfidSerial(i As Long)
+        rfidSerial = i
+    End Sub
 
     Public Sub setPfxPin(p As String)
         pfxPin = p
