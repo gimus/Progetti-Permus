@@ -9,6 +9,7 @@ Public Class InitiateTransfer
     Protected ttp As TransferTransactionPackage
     '    Protected interfaceValid As Boolean = False
     Protected opMode As OpModeEnum = OpModeEnum.input
+    Protected subMode As TransferFeedbackPage.TransferFeedbackModeEnum
     Protected lastFrameName As String = ""
     Protected transferIdToBeAccepted As String = ""
     Protected Enum OpModeEnum
@@ -81,13 +82,22 @@ Public Class InitiateTransfer
 
                     End Try
                 End If
-                CheckPendingTransfers()
+
+                If opMode = OpModeEnum.feedback And subMode = TransferFeedbackPage.TransferFeedbackModeEnum.check Then
+                    ' do nothing
+                Else
+                    CheckPendingTransfers()
+                End If
+
+
 
         End Select
     End Sub
 
     Protected Sub setMode(newMode As OpModeEnum, Optional submode As TransferFeedbackPage.TransferFeedbackModeEnum = TransferFeedbackPage.TransferFeedbackModeEnum.check)
         Me.opMode = newMode
+        Me.subMode = submode
+
         btnOk.Visibility = Visibility.Collapsed
         btnCancel.Visibility = Visibility.Collapsed
         btnTrasmit.Visibility = Visibility.Collapsed

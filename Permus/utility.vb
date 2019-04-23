@@ -79,6 +79,8 @@ Public Class utility
             r.Add(New CmsRecipient(cer))
         Next
         ecms.Encrypt(r)
+        'Dim b() As Byte = ecms.Encode()
+        'IO.File.WriteAllBytes("c:\test\pippo.p7m", b)
         Return ecms.Encode()
     End Function
 
