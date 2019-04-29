@@ -16,9 +16,9 @@
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Image Width="80" Name="img0" Source="/PermusClient;component/Images/261.png" Visibility="Hidden" />
-        <Image Width="80" Name="img1" Source="/PermusClient;component/Images/264.png" Visibility="Hidden" />
-        <Image Width="80" Name="img2" Source="/PermusClient;component/Images/262.png" Visibility="Visible" />
+        <Image Width="80" Name="img0" Source="/PermusWpf;component/Images/261.png" Visibility="Hidden" />
+        <Image Width="80" Name="img1" Source="/PermusWpf;component/Images/264.png" Visibility="Hidden" />
+        <Image Width="80" Name="img2" Source="/PermusWpf;component/Images/262.png" Visibility="Visible" />
         <Grid Grid.Column="1" >
             <TextBlock Margin="4" Name="message" Text="????" VerticalAlignment="Center" TextAlignment="Center" FontSize="14" TextWrapping="Wrap" />
         </Grid>

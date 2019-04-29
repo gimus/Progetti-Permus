@@ -9,7 +9,7 @@
         Title="BlockMaster Connection" Height="496.788" Width="652.677" ResizeMode="NoResize">
     <Grid   >
         <Grid.Background>
-            <ImageBrush Opacity=".8" ImageSource="/PermusClient;component/Images/blockchain.jpg"/>
+            <ImageBrush Opacity=".8" ImageSource="/PermusWpf;component/Images/blockchain.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>

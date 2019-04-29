@@ -1,12 +1,12 @@
 ﻿<ResourceDictionary 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:PermusWpf" 
+    xmlns:wp="clr-namespace:PermusWpf" 
     >
-    <local:SubjectNameFromIdConverter x:Key="SubjectNameFromIdConverter" />
-    <local:UtcToLocalTimeConverter x:Key="UtcToLocalTimeConverter" />
-    <local:TransferItemImageConverter x:Key="TransferItemImageConverter" />
-    <local:TransferItemBackgroundColorConverter x:Key="TransferItemBackgroundColorConverter" />
-    <local:SubjectImageConverter x:Key="SubjectImageConverter" />
+    <wp:SubjectNameFromIdConverter x:Key="subjectNameFromIdConverter" />
+    <wp:UtcToLocalTimeConverter x:Key="utcToLocalTimeConverter" />
+    <wp:TransferItemImageConverter x:Key="transferItemImageConverter" />
+    <wp:TransferItemBackgroundColorConverter x:Key="transferItemBackgroundColorConverter" />
+    <wp:SubjectImageConverter x:Key="subjectImageConverter" />
 
 </ResourceDictionary>

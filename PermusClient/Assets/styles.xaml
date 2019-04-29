@@ -4,7 +4,7 @@
     xmlns:local="clr-namespace:PermusClient" 
     >
 
-    <Style TargetType="{x:Type TreeViewItem}">
+    <!--<Style TargetType="{x:Type TreeViewItem}">
         <Setter Property="IsExpanded" Value="{Binding isExpanded}">
         </Setter>
     </Style>
@@ -312,7 +312,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
 
 

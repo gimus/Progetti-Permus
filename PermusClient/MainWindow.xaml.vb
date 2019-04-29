@@ -3,18 +3,18 @@ Imports System.Security.Cryptography.X509Certificates
 Imports System.Text
 Imports System.Threading
 Imports Permus
+Imports PermusWpf
 
 Class MainWindow
     Dim WithEvents C As ClientBlockChain
-    Dim difficulty As Integer = 2
     Protected xdocMenu As XDocument
     Dim detailPages As New List(Of DetailPage)
     Dim currentUserDetailPage As New CurrentUserDetailPage
     Dim userDetailPage As New UserDetailPage
     Dim bcDetailPage As New BlockchainDetailPage
 
-    Dim fromTransactionsPage As New FromTransactionsPage
-    Dim toTransactionsPage As New ToTransactionsPage
+    '  Dim fromTransactionsPage As New FromTransactionsPage
+    ' Dim toTransactionsPage As New ToTransactionsPage
     Dim fromTransferItemsPage As New FromTransferItemsPage
     Dim toTransferItemsPage As New ToTransferItemsPage
 
@@ -28,7 +28,7 @@ Class MainWindow
         Application.mw = Me
         C = Application.C
         StatoWindow.RipristinaStato(Me)
-        BCeventNotificationWindow = New BlockChainEventNotificationWindow
+        BCeventNotificationWindow = New BlockChainEventNotificationWindow(Application.C)
         BCeventNotificationWindow.Visibility = Visibility.Hidden
         detailPages.Add(userDetailPage)
         detailPages.Add(currentUserDetailPage)

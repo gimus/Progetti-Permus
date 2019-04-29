@@ -1,5 +1,6 @@
 ﻿Imports System.Text
 Imports Permus
+Imports PermusWpf
 
 Public Class PendingTransferDetail
     Inherits commandableControl

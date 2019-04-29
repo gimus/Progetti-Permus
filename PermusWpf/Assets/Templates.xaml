@@ -1,7 +1,11 @@
 ﻿<ResourceDictionary 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:PermusClient">
+    xmlns:local="clr-namespace:PermusWpf">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/PermusWpf;component/Assets/converters.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
 
     <HierarchicalDataTemplate x:Key="nodoConImmagine" ItemsSource="{Binding Path=NodiDipendenti}" >
         <StackPanel Orientation="Horizontal" ToolTipService.ToolTip="{Binding ToolTip}" Margin="2" >
@@ -9,31 +13,7 @@
             <TextBlock Margin="4,0,0,0"  Text="{Binding Path=Label}" />
         </StackPanel>
     </HierarchicalDataTemplate>
-
-    <DataTemplate x:Key="itemTransactionFrom" >
-        <Grid Width="800" Background="red" Margin="1">
-            <StackPanel Orientation="Vertical" Margin="2" >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="2" Text="{Binding Path=timestamp, Converter={StaticResource UtcToLocalTimeConverter},  StringFormat='{}{0:MM/dd/yy HH:mm}'}"></TextBlock>
-                    <TextBlock Margin="2" Text="{Binding Path=fromSubject, Converter={StaticResource SubjectNameFromIdConverter}}"></TextBlock>
-                </StackPanel>
-                <TextBlock Margin="4,0,0,0"  Text="{Binding Path=transferObjectDescription}" />
-            </StackPanel>
-        </Grid>
-    </DataTemplate>
-
-    <DataTemplate x:Key="itemTransactionTo" >
-        <Grid Width="800" Background="Beige" Margin="1">
-            <StackPanel Orientation="Vertical" Margin="2" >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="2" Text="{Binding Path=timestamp, Converter={StaticResource UtcToLocalTimeConverter},  StringFormat='{}{0:MM/dd/yy HH:mm}'}"></TextBlock>
-                    <TextBlock Margin="2" Text="{Binding Path=toSubject, Converter={StaticResource SubjectNameFromIdConverter}}"></TextBlock>
-                </StackPanel>
-                <TextBlock Margin="4,0,0,0"  Text="{Binding Path=transferObjectDescription}" />
-            </StackPanel>
-        </Grid>
-    </DataTemplate>
-
+ 
     <DataTemplate x:Key="itemTransferTransaction" >
         <Border BorderBrush="LightGray" BorderThickness="1" >
             <Grid Width="800"  Margin="0">
@@ -43,8 +23,8 @@
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="gray" BorderThickness="1" Grid.Column="0" >
                     <StackPanel Orientation="Vertical" >
-                        <Image Width="40" Height="40" Source="{Binding Converter={StaticResource TransferItemImageConverter}}"></Image>
-                        <Border Background="{Binding Converter={StaticResource TransferItemBackgroundColorConverter}}" Grid.Column="0" >
+                        <Image Width="40" Height="40" Source="{Binding Converter={StaticResource transferItemImageConverter}}"></Image>
+                        <Border Background="{Binding Converter={StaticResource transferItemBackgroundColorConverter}}" Grid.Column="0" >
                             <TextBlock FontWeight="Medium" Foreground="LightGray" HorizontalAlignment="Center" Margin="4,0,0,0" FontSize="11" Text="{Binding Path=sComp}" />
                         </Border>
                     </StackPanel>
@@ -55,7 +35,7 @@
                             <TextBlock Margin="8,0,8,0"  FontSize="9" Text="{Binding Path=transactionId}"></TextBlock>
                         </Border>
                         <TextBlock FontWeight="Medium" Margin="2" Text="{Binding Path=transferTransactionTitle }"></TextBlock>
-                        <TextBlock Margin="2" Text="{Binding Path=timestamp, Converter={StaticResource UtcToLocalTimeConverter},  StringFormat='{}{0:dd MMMM yyyy HH:mm}'}"></TextBlock>
+                        <TextBlock Margin="2" Text="{Binding Path=timestamp, Converter={StaticResource  utcToLocalTimeConverter},  StringFormat='{}{0:dd MMMM yyyy HH:mm}'}"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel  Orientation="Horizontal">
@@ -80,7 +60,7 @@
                     <ColumnDefinition Width="28" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image Width="24" Height="24" Grid.Column="0" Source="/PermusClient;component/Images/block.png"></Image>
+                <Image Width="24" Height="24" Grid.Column="0" Source="/PermusWpf;component/Images/block.png"></Image>
                 <StackPanel Orientation="Vertical" Grid.Column="1" Margin="2" >
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="2" Text="Block #"></TextBlock>
@@ -100,7 +80,7 @@
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="gray" BorderThickness="1" Grid.Column="0" >
                     <StackPanel Orientation="Vertical" >
-                        <Image Width="48" Height="48" Source="{Binding Converter={StaticResource TransferItemImageConverter}}"></Image>
+                        <Image Width="48" Height="48" Source="{Binding Converter={StaticResource transferItemImageConverter}}"></Image>
                     </StackPanel>
                 </Border>
                 <StackPanel Orientation="Vertical" Grid.Column="1" Margin="2" >

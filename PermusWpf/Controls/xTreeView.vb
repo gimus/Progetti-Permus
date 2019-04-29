@@ -86,9 +86,9 @@ Public Class xNodo
     Public ReadOnly Property Image() As String
         Get
             If e.Attribute("image") IsNot Nothing Then
-                Return "/Images/" & e.Attribute("image").Value
+                Return "/PermusWpf;component//Images/" & e.Attribute("image").Value
             Else
-                Return "/Images/noimage.png"
+                Return "/PermusWpf;component//Images/noimage.png"
             End If
         End Get
     End Property

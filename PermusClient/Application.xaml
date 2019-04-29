@@ -7,6 +7,10 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
 
+                <ResourceDictionary Source="/PermusWpf;component/Assets/templates.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/PermusWpf;component/Assets/styles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/PermusWpf;component/Assets/converters.xaml"></ResourceDictionary>
+
                 <ResourceDictionary Source="Assets/Styles.xaml" />
                 <ResourceDictionary Source="Assets/Converters.xaml" />
                 <ResourceDictionary Source="Assets/Templates.xaml" />

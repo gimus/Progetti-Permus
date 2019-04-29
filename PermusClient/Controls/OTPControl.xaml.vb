@@ -1,5 +1,6 @@
 ﻿Imports Permus
 Imports Microsoft.Win32
+Imports PermusWpf
 
 Public Class OTPControl
     Protected WithEvents WB As WebBrowser

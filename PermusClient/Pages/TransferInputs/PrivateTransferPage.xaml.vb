@@ -1,5 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 Imports Permus
+Imports PermusWpf
 
 Class PrivateTransferPage
     Inherits TransferInputRoot

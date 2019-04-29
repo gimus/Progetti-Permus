@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Image Name="userImage" Margin="2" Source="{Binding Converter={StaticResource SubjectImageConverter}}" ></Image>
+            <Image Name="userImage" Margin="2" Source="{Binding Converter={StaticResource subjectImageConverter}}" ></Image>
             <StackPanel Grid.Column="1" Orientation="Vertical">
                 <TextBlock Margin="2" Text="{Binding name}" FontSize="22" FontWeight="Bold" ></TextBlock>
                 <TextBlock Margin="2" Text="{Binding distinguishedName}" FontSize="12"></TextBlock>

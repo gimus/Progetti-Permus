@@ -45,6 +45,12 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>test_code_sign.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -86,6 +92,7 @@
     <Compile Include="Assets\Converters\TransferItemImageConverter.vb" />
     <Compile Include="Assets\Converters\UtcToLocalTimeConverter.vb" />
     <Compile Include="Controls\Dialogs.vb" />
+    <Compile Include="Controls\xTreeView.vb" />
     <Compile Include="My Project\AssemblyInfo.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -117,6 +124,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="test_code_sign.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\converters.xaml">

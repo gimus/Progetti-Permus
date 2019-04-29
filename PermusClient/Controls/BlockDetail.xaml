@@ -17,7 +17,7 @@
                     <ColumnDefinition Width="44" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image Width="32" Height="32" Grid.Column="0" Source="/PermusClient;component/Images/block.png"></Image>
+                <Image Width="32" Height="32" Grid.Column="0" Source="/PermusWpf;component/Images/block.png"></Image>
                 <StackPanel Orientation="Vertical" Grid.Column="1" Margin="2" >
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="2" FontSize="20" Text="Block #"></TextBlock>

@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PermusClient"
+        xmlns:pw="clr-namespace:PermusWpf;assembly=PermusWpf"
         mc:Ignorable="d"
-        Title="Permus Client" Height="450" Width="800" Icon="Images/bc2.ico">
+        Title="Permus Client" Height="450" Width="800" Icon="/PermusWpf;component/Images/bc2.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -42,11 +43,6 @@
                 </Button.Triggers>
             </Button>
         </Menu>
-        <!--<ToolBar Height="34" Visibility="Visible" >
-            <Button Margin="2" Name="btnTransfer" Width="100" Height="24"  Click="BtnTransfer_Click"  Style="{StaticResource PermusButton}" >Transfer</Button>
-            <Button Margin="2" Name="btnAccept" Width="100" Height="24"  Click="BtnAccept_Click" Style="{StaticResource PermusButton}" >Accept</Button>
-            <Button Margin="2" Name="test" Width="100" Height="24"  Click="Test_Click" >test</Button>
-        </ToolBar>-->
 
         <Grid Grid.Row="1">
 
@@ -63,9 +59,9 @@
                     <RowDefinition Name="panel_org_splitter_position" Height="200"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Background="red" >
-                    <local:xTreeView SelectedItemChanged="XMenuMain_SelectedItemChanged" x:Name="xMenuMain" AllowDrop="False"
+                    <pw:xTreeView SelectedItemChanged="XMenuMain_SelectedItemChanged" x:Name="xMenuMain" AllowDrop="False"
                          Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  >
-                    </local:xTreeView>
+                    </pw:xTreeView>
                 </Grid>
                 <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"  Style="{StaticResource HGridSplitter }"  />
                 <Grid Grid.Row="2">
@@ -120,7 +116,7 @@
                 </StatusBarItem>
                 <StatusBarItem   Grid.Column="4" >
                     <StackPanel Height = "Auto" VerticalAlignment="Center" Orientation="Horizontal" >
-                        <Image Margin="2,0,2,0" Visibility="Visible" VerticalAlignment="Center" Height = "Auto" ToolTip="" x:Name="icoServer" Source="Images/coin.png"  />
+                        <Image Margin="2,0,2,0" Visibility="Visible" VerticalAlignment="Center" Height = "Auto" ToolTip="" x:Name="icoServer" Source="/PermusWpf;component/Images/coin.png"  />
                         <TextBlock Margin="2,0,2,0" VerticalAlignment="Center" Height = "Auto" Foreground="#FF9585b9" Name="lblCoins" FontWeight="Bold" FontSize="15" Text="" />
                         <TextBlock Margin="2,0,2,0" VerticalAlignment="Center" Height = "Auto" Foreground="#FF9585b9" Text="coins" />
                     </StackPanel>
@@ -129,11 +125,11 @@
                 <StatusBarItem  Grid.Column="5" >
                     <StackPanel Height = "Auto" VerticalAlignment="Center" Orientation="Horizontal" >
                         <Button Name="btnUser" Click="BtnUser_Click">
-                            <Image Margin="2,0,2,0"  VerticalAlignment="Center" Height = "Auto"  x:Name="icoUser" Source="Images/user.png"  />
+                            <Image Margin="2,0,2,0"  VerticalAlignment="Center" Height = "Auto"  x:Name="icoUser" Source="/PermusWpf;component/Images/user.png"  />
                         </Button>
                         <TextBlock   Margin="2,0,2,0" VerticalAlignment="Center" Height = "Auto" Foreground="#FF9585b9" x:Name="lblUser"  Text="{Binding UserName}" />
                         <Button ToolTip="Quit application" Name="btnQuit" Click="BtnQuit_Click" >
-                            <Image Width="16" Height="16"  Margin="2,0,2,0"  VerticalAlignment="Center" x:Name="icoLogOut" Source="Images/logout.png" ToolTip="Esci e scollegati da questa applicazione" />
+                            <Image Width="16" Height="16"  Margin="2,0,2,0"  VerticalAlignment="Center" x:Name="icoLogOut" Source="/PermusWpf;component/Images/logout.png" ToolTip="Esci e scollegati da questa applicazione" />
                         </Button>
                     </StackPanel>
                 </StatusBarItem>

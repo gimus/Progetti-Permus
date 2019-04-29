@@ -1,5 +1,6 @@
 ﻿Imports System.Text
 Imports Permus
+Imports PermusWpf
 
 Public Class InitiateTransfer
     Inherits commandableControl
@@ -77,7 +78,7 @@ Public Class InitiateTransfer
             Case "TICK"
                 If My.Settings.DEBUG_autoproponi Then
                     Try
-                        initiateTransfer(New TransferTransactionPackage(My.Resources.test_trans))
+                        '         initiateTransfer(New TransferTransactionPackage(My.Resources.test_trans))
                     Catch ex As Exception
 
                     End Try

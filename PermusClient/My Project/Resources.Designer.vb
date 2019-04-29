@@ -22,7 +22,7 @@ Namespace My.Resources
     '''<summary>
     '''  Classe di risorse fortemente tipizzata per la ricerca di stringhe localizzate e così via.
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0"),  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
      Global.Microsoft.VisualBasic.HideModuleNameAttribute()>  _
@@ -71,29 +71,6 @@ Namespace My.Resources
         Friend ReadOnly Property menu_principale() As String
             Get
                 Return ResourceManager.GetString("menu_principale", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Cerca una stringa localizzata simile a &lt;TransferTransactionPackage&gt;
-        '''  &lt;transaction type=&quot;Transfer&quot; transferTransactionType=&quot;PublicTransfer&quot;&gt;
-        '''    &lt;blockSerial&gt;0&lt;/blockSerial&gt;
-        '''    &lt;serial&gt;0&lt;/serial&gt;
-        '''    &lt;timestamp&gt;-62135596800&lt;/timestamp&gt;
-        '''    &lt;transferId /&gt;
-        '''    &lt;fromSubject&gt;GMNLNA98P10D976K&lt;/fromSubject&gt;
-        '''    &lt;toSubject&gt;GMNGPP63P10D976K&lt;/toSubject&gt;
-        '''    &lt;message&gt;ogni 4 secondi&lt;/message&gt;
-        '''    &lt;coinAmount&gt;0&lt;/coinAmount&gt;
-        '''    &lt;signatureFrom&gt;
-        '''      &lt;x509CertificateHash /&gt;
-        '''      &lt;signature /&gt;
-        '''      &lt;timestamp&gt;0&lt;/timestamp&gt;
-        '''    &lt;/signatureFrom [stringa troncata]&quot;;.
-        '''</summary>
-        Friend ReadOnly Property test_trans() As String
-            Get
-                Return ResourceManager.GetString("test_trans", resourceCulture)
             End Get
         End Property
     End Module

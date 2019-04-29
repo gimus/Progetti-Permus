@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PermusClient"
+             xmlns:wp="clr-namespace:PermusWpf;assembly=PermusWpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid  >
@@ -18,7 +19,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Border Background="Navy">
-                    <Image Margin="4" Grid.Column="0" Source="/PermusClient;component/Images/transferList.png"></Image>
+                    <Image Margin="4" Grid.Column="0" Source="/PermusWpf;component/Images/transferList.png"></Image>
                 </Border>
                 <Border Background="Navy" Grid.Column="1">
                     <TextBlock Foreground="Azure" Name="tbTitle" Grid.Column="1" FontSize="18" Margin="2" FontWeight="Medium" ></TextBlock>
@@ -44,28 +45,28 @@
                         <ToolBar Background="LightGray" Visibility="Visible" >
                             <ToggleButton ToolTip="Visualizza/Nascondi gli elementi ancora non compensati" Click="BtnTransferElement_Click" IsChecked="True" Margin="2" Name="btnTransferElementRed" Width="40" >
                                 <StackPanel Orientation="Vertical">
-                                    <Image Margin="2" Source="/PermusClient;component/Images/transferElement.png" ></Image>
+                                    <Image Margin="2" Source="/PermusWpf;component/Images/transferElement.png" ></Image>
                                     <Border Height="10" Background="Red" ></Border>
                                 </StackPanel>
                             </ToggleButton>
                             <Separator />
                             <ToggleButton ToolTip="Visualizza/Nascondi gli elementi parzialmente compensati" Click="BtnTransferElement_Click" IsChecked="True" Margin="2" Name="btnTransferElementYellow" Width="40" >
                                 <StackPanel Orientation="Vertical">
-                                    <Image Margin="2" Source="/PermusClient;component/Images/transferElement.png" ></Image>
+                                    <Image Margin="2" Source="/PermusWpf;component/Images/transferElement.png" ></Image>
                                     <Border  Height="10" Background="Orange" ></Border>
                                 </StackPanel>
                             </ToggleButton>
                             <Separator />
                             <ToggleButton IsChecked="True" ToolTip="Visualizza/Nascondi gli elementi già compensati" Click="BtnTransferElement_Click"  Margin="2" Name="btnTransferElementGreen" Width="40" >
                                 <StackPanel Orientation="Vertical">
-                                    <Image Margin="2" Source="/PermusClient;component/Images/transferElement.png" ></Image>
+                                    <Image Margin="2" Source="/PermusWpf;component/Images/transferElement.png" ></Image>
                                     <Border Height="10" Background="Green" ></Border>
                                 </StackPanel>
                             </ToggleButton>
                             <Separator />
                             <ToggleButton IsChecked="True" ToolTip="Visualizza/Nascondi gli elementi utilizzati per compensare" Click="BtnTransferElement_Click" Margin="2" Name="btnTransferElementBlue" Width="40" >
                                 <StackPanel Orientation="Vertical">
-                                    <Image Margin="2" Source="/PermusClient;component/Images/compensation.png" ></Image>
+                                    <Image Margin="2" Source="/PermusWpf;component/Images/compensation.png" ></Image>
                                     <Border Height="10" Background="Blue" ></Border>
                                 </StackPanel>
                             </ToggleButton>
@@ -73,7 +74,7 @@
                         </ToolBar>
 
                     </Border>
-                    <ListBox ItemTemplate="{StaticResource itemTransferTransaction}" Grid.Row="1" Name="LB"></ListBox>
+                    <ListBox ItemTemplate="{StaticResource itemTransferTransaction }" Grid.Row="1" Name="LB"></ListBox>
                 </Grid>
             </Grid>
 

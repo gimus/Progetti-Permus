@@ -6,16 +6,16 @@ Friend Class SubjectImageConverter
     Public Function Convert(ByVal value As Object, ByVal targetType As Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements IValueConverter.Convert
         Try
             If value Is Nothing Then
-                Return "/PermusClient;component/Images/noimage.png"
+                Return "/PermusWpf;component/Images/noimage.png"
             Else
                 Dim s As Subject = value
                 If s.isAuthority Then
-                    Return "/PermusClient;component/Images/bank.png"
+                    Return "/PermusWpf;component/Images/bank.png"
                 Else
                     If s.isPublic Then
-                        Return "/PermusClient;component/Images/public.png"
+                        Return "/PermusWpf;component/Images/public.png"
                     Else
-                        Return "/PermusClient;component/Images/user.png"
+                        Return "/PermusWpf;component/Images/user.png"
                     End If
                 End If
             End If

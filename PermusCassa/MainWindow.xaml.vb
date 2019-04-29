@@ -7,7 +7,6 @@ Imports PermusWpf
 
 Class MainWindow
     Dim WithEvents C As ClientBlockChain
-    Dim difficulty As Integer = 2
     Protected xdocMenu As XDocument
     Dim lastMenuId As String = "currentUser_0"
     Protected lastStatusText As String = ""

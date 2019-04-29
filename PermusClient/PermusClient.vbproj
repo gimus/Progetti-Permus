@@ -92,7 +92,8 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Images\bc2.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -167,9 +168,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Assets\Converters\TransferItemBackgroundColorConverter.vb" />
-    <Compile Include="Assets\Converters\SubjectImageConverter.vb" />
-    <Compile Include="Assets\Converters\TransferItemImageConverter.vb" />
+    <Compile Include="Controls\commandableControl.vb" />
     <Compile Include="Controls\DispositiviControl.xaml.vb">
       <DependentUpon>DispositiviControl.xaml</DependentUpon>
     </Compile>
@@ -185,8 +184,6 @@
     <Compile Include="Controls\InitiateTransfer.xaml.vb">
       <DependentUpon>InitiateTransfer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\commandableControl.vb" />
-    <Compile Include="Controls\Dialogs.vb" />
     <Compile Include="Controls\BlockDetail.xaml.vb">
       <DependentUpon>BlockDetail.xaml</DependentUpon>
     </Compile>
@@ -201,6 +198,9 @@
     </Compile>
     <Compile Include="Controls\BlocksBrowser.xaml.vb">
       <DependentUpon>BlocksBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FromTransferItemsPage.xaml.vb">
+      <DependentUpon>FromTransferItemsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TransferInputs\NoOperationPage.xaml.vb">
       <DependentUpon>NoOperationPage.xaml</DependentUpon>
@@ -218,9 +218,6 @@
       <DependentUpon>PublicTransferPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\DetailPage.vb" />
-    <Compile Include="Pages\FromTransferItemsPage.xaml.vb">
-      <DependentUpon>FromTransferItemsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\ToTransferItemsPage.xaml.vb">
       <DependentUpon>ToTransferItemsPage.xaml</DependentUpon>
     </Compile>
@@ -246,30 +243,24 @@
     <Compile Include="Pages\UserDetailPage.xaml.vb">
       <DependentUpon>UserDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Assets\Converters\SubjectNameFromIdConverter.vb" />
-    <Compile Include="Assets\Converters\UtcToLocalTimeConverter.vb" />
-    <Compile Include="Pages\FromTransactionsPage.xaml.vb">
-      <DependentUpon>FromTransactionsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ToTransactionsPage.xaml.vb">
-      <DependentUpon>ToTransactionsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\xTreeView.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="StatoWindow.vb" />
-    <Compile Include="Windows\BlockChainEventNotificationWindow.xaml.vb">
-      <DependentUpon>BlockChainEventNotificationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\BlockMasterConnectWindow.xaml.vb">
-      <DependentUpon>BlockMasterConnectWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\TimedWindow.xaml.vb">
-      <DependentUpon>TimedWindow.xaml</DependentUpon>
-    </Compile>
+    <Page Include="Assets\converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Assets\styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Assets\Templates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="Controls\DispositiviControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -310,6 +301,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\FromTransferItemsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="Pages\TransferInputs\NoOperationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -329,10 +324,6 @@
     <Page Include="Pages\TransferInputs\PublicTransferPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\FromTransferItemsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ToTransferItemsPage.xaml">
       <SubType>Designer</SubType>
@@ -366,26 +357,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Assets\converters.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Assets\styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Assets\Templates.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\FromTransactionsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ToTransactionsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -398,18 +369,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\BlockChainEventNotificationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\BlockMasterConnectWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\TimedWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Import Include="System.Threading.Tasks" />
@@ -460,26 +419,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\bullet.png" />
-    <Resource Include="Images\clock.png" />
-    <Resource Include="Images\comment.png" />
-    <Resource Include="Images\detach.png" />
-    <Resource Include="Images\DocAPI.ico" />
-    <Resource Include="Images\DocAPIAppSplash.png" />
-    <Resource Include="Images\folder_green.png" />
-    <Resource Include="Images\logout.png" />
-    <Resource Include="Images\membro.png" />
-    <Resource Include="Images\noImage.png" />
-    <Resource Include="Images\properties.png" />
-    <Resource Include="Images\report32.png" />
-    <Resource Include="Images\search.png" />
-    <Resource Include="Images\sezione64.png" />
-    <Resource Include="Images\star.png" />
-    <Resource Include="Images\toolbox.ico" />
-    <Resource Include="Images\user.png" />
-    <Resource Include="Images\world.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\menu_principale.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -495,71 +434,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\blockchain.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\masterLocalDb.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\B_S_128x128.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\transferList.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\compensation.png" />
-    <Resource Include="Images\transferElement.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\261.png" />
-    <Resource Include="Images\262.png" />
-    <Resource Include="Images\264.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\bc.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\blocks.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\block.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\home.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\bank.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\TransferTransactions\CoinTransfer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\bc2.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\TransferTransactions\Compensation.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\TransferTransactions\PrivateSale.png" />
-    <Resource Include="Images\TransferTransactions\PrivateTransfer.png" />
-    <Resource Include="Images\TransferTransactions\PublicSale.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\test_trans.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\coin.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\PermusWpf\PermusWpf.vbproj">
+      <Project>{df43591d-f8c1-4e1a-ad6c-6d9bec236a19}</Project>
+      <Name>PermusWpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Permus\Permus.vbproj">
       <Project>{16eca160-1257-4192-bc00-7f2c647b709e}</Project>
       <Name>Permus</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\public.png" />
+    <Folder Include="Assets\Converters\" />
+    <Folder Include="Images\" />
+    <Folder Include="Windows\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
