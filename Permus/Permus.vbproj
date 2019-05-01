@@ -133,6 +133,7 @@
     <Compile Include="ClientBlockMSAccessDbDataAdapter.vb" />
     <Compile Include="ClientBlockChainFileSystemDataAdapter.vb" />
     <Compile Include="ClientBlockChain.vb" />
+    <Compile Include="Models\Addons\SensorReading.vb" />
     <Compile Include="Models\Block.vb" />
     <Compile Include="Models\PermusObject.vb" />
     <Compile Include="Models\Signature.vb" />

@@ -1,4 +1,6 @@
-﻿Public Class Relay
+﻿Imports Permus
+
+Public Class Relay
     Protected sensors As New Dictionary(Of String, Sensor)
 
     Protected Function getSensor(sensorId As String) As Sensor
@@ -61,14 +63,17 @@ Public Class Sensor
     End Function
 End Class
 
-Public Class SensorReading
-    Public Sub New(sensorId As String, value As String)
-        Me.sensorId = sensorId
-        Me.value = value
-        Me.time = Now()
-    End Sub
+'Public Class SensorReading
+'    Public Sub New()
+'    End Sub
 
-    Public Property sensorId As String
-    Public Property time As DateTime
-    Public Property value As String
-End Class
+'    Public Sub New(sensorId As String, value As String)
+'        Me.sensorId = sensorId
+'        Me.value = value
+'        Me.time = Now()
+'    End Sub
+
+'    Public Property sensorId As String
+'    Public Property time As DateTime
+'    Public Property value As String
+'End Class

@@ -1,5 +1,7 @@
 ﻿Imports System.Web.Http
 Imports System.Web.Http.Cors
+Imports Permus
+
 Namespace Controllers
 
     Public Class RelayController
