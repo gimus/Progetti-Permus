@@ -6,6 +6,8 @@ Public Class App
     Protected B As BlockMasterBlockChain
     Public Shared H As TelegramBotHandler
     Public Shared mailer As Mailer
+    Public Shared R As Relay
+
     Public Sub New()
     End Sub
 
@@ -19,6 +21,10 @@ Public Class App
         Catch ex As Exception
         End Try
 
+        Try
+            R = New Relay
+        Catch ex As Exception
+        End Try
     End Sub
 
     Protected Sub Application_End()

@@ -156,6 +156,8 @@
     <Compile Include="Code\BlockMasterBlockChain.vb" />
     <Compile Include="Code\BlockMasterDataAdapter.vb" />
     <Compile Include="Code\Factory.vb" />
+    <Compile Include="Code\Relay.vb" />
+    <Compile Include="Controllers\API\RelayController.vb" />
     <Compile Include="Interop\Mailer.vb" />
     <Compile Include="Code\TelegramBotHandler.vb" />
     <Compile Include="Controllers\API\DeviceController.vb" />

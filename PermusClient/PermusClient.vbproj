@@ -168,6 +168,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\BlockDetail.xaml.vb">
+      <DependentUpon>BlockDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BlocksBrowser.xaml.vb">
+      <DependentUpon>BlocksBrowser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\commandableControl.vb" />
     <Compile Include="Controls\DispositiviControl.xaml.vb">
       <DependentUpon>DispositiviControl.xaml</DependentUpon>
@@ -184,9 +190,6 @@
     <Compile Include="Controls\InitiateTransfer.xaml.vb">
       <DependentUpon>InitiateTransfer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\BlockDetail.xaml.vb">
-      <DependentUpon>BlockDetail.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\numericTextBox.xaml.vb">
       <DependentUpon>numericTextBox.xaml</DependentUpon>
     </Compile>
@@ -195,9 +198,6 @@
     </Compile>
     <Compile Include="Controls\TransferTransactionDetail.xaml.vb">
       <DependentUpon>TransferTransactionDetail.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\BlocksBrowser.xaml.vb">
-      <DependentUpon>BlocksBrowser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\FromTransferItemsPage.xaml.vb">
       <DependentUpon>FromTransferItemsPage.xaml</DependentUpon>
@@ -261,6 +261,14 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Controls\BlockDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\BlocksBrowser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\DispositiviControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -281,10 +289,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\BlockDetail.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\numericTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -294,10 +298,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\TransferTransactionDetail.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\BlocksBrowser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
