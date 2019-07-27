@@ -5,54 +5,13 @@ Imports Newtonsoft
 Imports Newtonsoft.Json
 
 Public Class BlockMasterWebApiClient
-    Private Client As HttpClient
-    Protected _LastResponseOk As Boolean
-    Protected _LastResponseMessage As String
-    Protected _baseAddress As Uri
-    Protected lastRequestTime As Long
-    Protected _lastPing As Long
+    Inherits WebApiClient
 
     Public Sub New(Optional ApibaseAddress As Uri = Nothing)
-        _baseAddress = ApibaseAddress
-
-        Dim handler As New HttpClientHandler()
-        handler.UseDefaultCredentials = True
-        Client = New HttpClient(handler)
-        If ApibaseAddress IsNot Nothing Then
-            baseAddress = ApibaseAddress
-        End If
-        Client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/xml"))
-        Client.Timeout = New TimeSpan(0, 0, 30)
+        MyBase.New(ApibaseAddress)
     End Sub
 
-    Public ReadOnly Property lastPingTime As Long
-        Get
-            Return _lastPing
-        End Get
-    End Property
-
-    Public ReadOnly Property LastResponseOK As Boolean
-        Get
-            Return _LastResponseOk
-        End Get
-    End Property
-
-    Public ReadOnly Property LastResponseMessage As String
-        Get
-            Return _LastResponseMessage
-        End Get
-    End Property
-
-    Public Property baseAddress() As Uri
-        Get
-            Return Client.BaseAddress
-        End Get
-        Set(value As Uri)
-            Client.BaseAddress = value
-        End Set
-    End Property
-
-    Protected Function getProperResponseObject(response As HttpResponseMessage, expectedObjectType As String) As Object
+    Protected Overrides Function getProperResponseObject(response As HttpResponseMessage, expectedObjectType As String) As Object
         Try
             Select Case expectedObjectType
                 Case "Transaction"
@@ -152,80 +111,6 @@ Public Class BlockMasterWebApiClient
     Public Async Function transferTransactionAccept(ttp As TransferTransactionPackage, SignedCommand As Byte(), Optional receiver As iWebApiAsyncReceiver = Nothing) As Task(Of TransferTransactionPackage)
         Dim requestURI As String = String.Format("api/transfer_transaction?commandType=TransferTransactionAccept&command={0}", utility.ConvertToUrlSafeBase64String(SignedCommand))
         Return Await processRequest(requestURI, receiver, "TransferTransactionPackage", ttp)
-    End Function
-
-    Public Async Function processRequest(requestUri As String, Optional receiver As iWebApiAsyncReceiver = Nothing, Optional objectType As String = "String", Optional permusObject As PermusObject = Nothing, Optional forcePostMethod As Boolean = False) As Task(Of Object)
-        Dim method As HttpMethod = HttpMethod.Get
-        Dim content As StringContent = Nothing
-        Dim response As HttpResponseMessage
-
-        If permusObject IsNot Nothing Or forcePostMethod Then
-            Client.DefaultRequestHeaders.Accept.Clear()
-            Client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/xml"))
-            If permusObject IsNot Nothing Then
-                content = New StringContent(permusObject.xml.ToString, Encoding.UTF8, "application/xml")
-            End If
-            method = HttpMethod.Post
-        End If
-
-        If receiver Is Nothing Then
-            ' SYNC CALL
-
-            Try
-                _LastResponseMessage = "OK"
-                _LastResponseOk = True
-                lastRequestTime = Environment.TickCount
-                If method = HttpMethod.Post Then
-                    Debug.Print(Now().ToString("HH:mm:ss") & " Posting: " & requestUri)
-                    response = Client.PostAsync(requestUri, content).Result
-                Else
-                    Debug.Print(Now().ToString("HH:mm:ss") & " Getting: " & requestUri)
-                    response = Client.GetAsync(requestUri).Result
-                End If
-                _lastPing = Environment.TickCount - lastRequestTime
-
-                If Not response.IsSuccessStatusCode Then
-                    _LastResponseMessage = "il metodo GetAsync è stato eseguito senza successo: " & response.ReasonPhrase
-                    _LastResponseOk = False
-                    Debug.Print(_LastResponseMessage)
-                End If
-
-                If Me._LastResponseOk Then
-                    Debug.Print(Now().ToString("HH:mm:ss") & " Response OK!")
-
-                    Return getProperResponseObject(response, objectType)
-                Else
-                    Throw New Exception(_LastResponseMessage)
-                End If
-
-            Catch ex As Exception
-                _LastResponseMessage = "Si è verificato un errore chiamando il metodo GetAsync: " & vbCrLf & ex.Message
-                _LastResponseOk = False
-                Return Nothing
-            End Try
-
-        Else
-            ' ASYNC CALL
-            Try
-                If method = HttpMethod.Post Then
-                    response = Await Client.PostAsync(requestUri, content)
-                Else
-                    response = Await Client.GetAsync(requestUri)
-                End If
-
-                If response.IsSuccessStatusCode Then
-                    receiver.dataReady(requestUri, getProperResponseObject(response, objectType))
-                Else
-                    receiver.exception(requestUri, New Exception("_Async: Il metodo Get/PostAsync è stato eseguito senza successo: " & response.ReasonPhrase))
-                End If
-
-            Catch ex As Exception
-                receiver.exception(requestUri, New Exception("_Async: Si è verificato un errore chiamando il metodo Get/PostAsync: " & vbCrLf & ex.Message, ex))
-            End Try
-
-            Return Nothing
-        End If
-
     End Function
 
 End Class

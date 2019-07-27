@@ -129,6 +129,7 @@
   <ItemGroup>
     <Compile Include="AES128.vb" />
     <Compile Include="BlockChain.vb" />
+    <Compile Include="RelayWebApiClient.vb" />
     <Compile Include="ClientBlockChainZippedFileSystemDataAdapter.vb" />
     <Compile Include="ClientBlockMSAccessDbDataAdapter.vb" />
     <Compile Include="ClientBlockChainFileSystemDataAdapter.vb" />
@@ -162,6 +163,7 @@
     <Compile Include="OtpUtility.vb" />
     <Compile Include="utility.vb" />
     <Compile Include="BlockMasterWebApiClient.vb" />
+    <Compile Include="WebApiClient.vb" />
     <Compile Include="ZIP.vb" />
   </ItemGroup>
   <ItemGroup>

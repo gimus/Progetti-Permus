@@ -11,6 +11,7 @@ Class MainWindow
     Dim lastMenuId As String = "currentUser_0"
     Protected lastStatusText As String = ""
     Dim BCeventNotificationWindow As BlockChainEventNotificationWindow
+    Dim RC As New RelayWebApiClient(New Uri(My.Settings.serverUrl))
 
     Public Sub New()
         InitializeComponent()
@@ -155,6 +156,10 @@ Class MainWindow
     Private Sub C_BlockChainTick() Handles C.BlockChainTick
         updateServerStatusText()
 
+        Dim r As SensorReading = RC.getSensorReading("pino").Result
+        If r IsNot Nothing Then
+            Dialogs.notify(r.value, Me)
+        End If
 
     End Sub
 
